@@ -245,6 +245,122 @@ details > :not(summary){padding:0 14px 14px}
 .toast.show{opacity:1}
 @media (min-width:1000px){.toast{bottom:24px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+/* Budget series colours: reference palette slots 1–7, in fixed order */
+:root{--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;--s6:#008300;--s7:#6250d6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--s7:#9085e9}}
+:root[data-theme="dark"]{--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--s7:#9085e9}
+
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.avoid{display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--hot-soft)}
+.avoid h3{color:var(--hot)}
+.avoid h4{font:500 .7rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.avoid .plain li{max-width:none}
+
+/* Filters */
+.filters{display:flex;flex-direction:column;gap:12px;background:var(--surface-2);border-radius:12px;padding:12px}
+.seg{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:3px;overflow-x:auto;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg button{appearance:none;border:0;background:transparent;color:var(--muted);font:500 .88rem/1.2 var(--body);padding:9px 12px;border-radius:8px;cursor:pointer;white-space:nowrap;flex:1 0 auto;min-height:40px}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.seg.sm button{font-size:.82rem;padding:7px 10px;min-height:36px}
+.seg.wrap{flex-wrap:wrap;overflow:visible}
+.frow{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:.85rem;color:var(--muted);min-width:0}
+.fld.grow{flex:1 1 14rem}
+.fld b{color:var(--ink)}
+.fld span{display:flex;justify-content:space-between;gap:8px}
+select,input[type=number]{font:500 .92rem/1.2 var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-height:44px;max-width:100%}
+input[type=range]{width:100%;accent-color:var(--accent);min-height:32px}
+.fmore{background:var(--surface)}
+.fcount{font:500 .72rem/1 var(--mono);color:var(--accent-ink);background:var(--accent);border-radius:999px;padding:3px 7px}
+.fcount:empty{display:none}
+.fgrid{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:700px){.fgrid{grid-template-columns:1fr 1fr}.fgroup.wide{grid-column:1/-1}}
+.fgroup{display:flex;flex-direction:column;gap:6px;min-width:0}
+.flabel{font:500 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 .82rem/1.2 var(--body);padding:8px 12px;border-radius:999px;cursor:pointer;min-height:36px}
+.chips button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.chips button[aria-pressed="true"]::before{content:"✓ "}
+.fstatus{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.linkbtn{appearance:none;border:0;background:none;color:var(--accent);font:500 .88rem/1 var(--body);text-decoration:underline;cursor:pointer;padding:8px 0}
+.empty{border:1px dashed var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--muted)}
+
+/* Stay cards (data-driven) */
+.stay.picked{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.stay .rk.none{background:var(--surface-2);color:var(--muted)}
+.price .live{font:500 .66rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;border-radius:5px;background:var(--ok-soft);color:var(--ok)}
+.price .est{font:500 .66rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;border-radius:5px;background:var(--warn-soft);color:var(--warn)}
+.stay .meta .neg{background:var(--hot-soft);color:var(--hot)}
+.stay .meta .pos{background:var(--accent-soft);color:var(--accent)}
+.stay details{border:0;background:transparent}
+.stay details summary{padding:4px 0;min-height:36px;font-size:.9rem;color:var(--accent)}
+.stay details > :not(summary){padding:4px 0 0}
+.btn.picked{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+
+/* Budget summary */
+.bsum{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow)}
+.bsum-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.bsum .k{font:500 .7rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.btotal{font:800 clamp(2rem,7vw,2.6rem)/1.05 var(--display);letter-spacing:-.02em}
+.ceil{width:9.5rem}
+.money{display:flex!important;align-items:center;gap:4px;justify-content:flex-start!important;color:var(--ink)}
+.money input{width:100%}
+.cbar{height:10px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.cbar-fill{height:100%;width:0;background:var(--accent);border-radius:999px;transition:width .25s}
+.cbar-fill.over{background:var(--hot)}
+.over-t{color:var(--hot);font-weight:600}
+.stack{display:flex;gap:2px;height:16px;background:var(--surface)}
+.stack span{display:block;height:100%;min-width:3px;transition:flex-grow .25s}
+.stack span:first-child{border-radius:4px 0 0 4px}
+.stack span:last-child{border-radius:0 4px 4px 0}
+.stack span:only-child{border-radius:4px}
+.legend{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(10.5rem,1fr));gap:4px 14px;font-size:.85rem}
+.legend li{display:flex;align-items:center;gap:8px;min-width:0}
+.legend .sw-dot{width:10px;height:10px;border-radius:3px;flex:none}
+.legend .lv{margin-left:auto;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.legend li.off{color:var(--muted)}
+.legend li.off .lv{text-decoration:line-through}
+.warns{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.warns li{font-size:.86rem;background:var(--warn-soft);color:var(--ink);border-radius:8px;padding:8px 10px;border-left:3px solid var(--warn)}
+.warns li::before{content:"⚠ ";color:var(--warn)}
+
+/* Budget groups */
+.bgroups{display:flex;flex-direction:column;gap:10px}
+.bg{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.bg-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;background:var(--surface-2)}
+.bg-title{font:700 1rem/1.2 var(--display)}
+.bg-sub{font-size:.95rem;white-space:nowrap}
+.bg.off .bg-sub{color:var(--muted);text-decoration:line-through}
+.bg-b{padding:14px;display:flex;flex-direction:column;gap:12px}
+.bg.off .bg-b{opacity:.45}
+.sw{display:flex;align-items:center;gap:10px;cursor:pointer;min-height:40px}
+.sw input{position:absolute;opacity:0;width:1px;height:1px}
+.sw-ui{width:40px;height:24px;border-radius:999px;background:var(--line);position:relative;flex:none;transition:background .15s}
+.sw-ui::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--surface);box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+.sw input:checked + .sw-ui{background:var(--accent)}
+.sw input:checked + .sw-ui::after{transform:translateX(16px)}
+.sw input:focus-visible + .sw-ui{outline:2px solid var(--accent);outline-offset:3px}
+.ctrls{display:flex;flex-direction:column;gap:10px}
+.tg{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:center;min-height:40px;cursor:pointer;font-size:.92rem}
+.tg input{width:20px;height:20px;accent-color:var(--accent);margin:0}
+.tg .amt{font-family:var(--mono);font-size:.82rem;color:var(--muted);white-space:nowrap}
+.stepper{display:flex;align-items:center;gap:8px;font-size:.92rem}
+.stepper > span:first-child{flex:1}
+.stepper button{appearance:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 1.1rem/1 var(--body);cursor:pointer}
+.stepper output{min-width:2ch;text-align:center;font-size:1rem}
+fieldset.opts{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.opt{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer}
+.opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.opt input{margin:3px 0 0;width:18px;height:18px;accent-color:var(--accent)}
+.opt .ot{font-weight:600;font-size:.92rem}
+.opt .od{display:block;font-size:.8rem;color:var(--muted);font-weight:400}
+.opt .op{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.9rem;white-space:nowrap}
+.opt.avoid-opt .ot{color:var(--hot)}
+@media (max-width:520px){.opt{grid-template-columns:22px 1fr}.opt .op{grid-column:2;white-space:normal}}
+#bExplain{display:flex;flex-direction:column;gap:8px}
+#bExplain p{max-width:none}
+.ibtn.tot{font-family:var(--mono);font-weight:500;border-color:var(--accent);color:var(--accent)}
 </style>
 </head>
 <body>
@@ -253,6 +369,7 @@ details > :not(summary){padding:0 14px 14px}
   <div class="bar-in">
     <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span><span class="t t-long">Vallarta Booking Playbook</span><span class="t t-short" aria-hidden="true">Vallarta 2027</span></a>
     <div class="bar-actions">
+      <a class="ibtn tot" href="#budget" title="Jump to the live budget"><span class="vh">Trip total </span><span id="barTotal">$0</span></a>
       <a class="ibtn" href="February%20Sun%20Trip%202027.html" title="Open the full February Sun Trip guide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span class="lbl">Full guide</span></a>
       <button class="ibtn" id="shareBtn" type="button" title="Share this page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span class="lbl">Share</span></button>
       <button class="ibtn" id="themeBtn" type="button" title="Switch light or dark" aria-label="Switch light or dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
@@ -269,6 +386,7 @@ details > :not(summary){padding:0 14px 14px}
       <a href="#calendar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Calendar</a>
       <a href="#points"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h4.5a1.5 1.5 0 0 1 0 3H9h5a1.5 1.5 0 0 1 0 3H9"/></svg>Points</a>
       <a href="#stay"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Stays</a>
+      <a href="#budget"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>Budget</a>
       <a href="#food"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2v7a3 3 0 0 0 6 0V2M6 2v20M20 2c-2 0-4 3-4 7v3h4V2zM20 12v10"/></svg>Food</a>
       <a href="#checklist"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Checklist</a>
       <a href="#backup"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Backups</a>
@@ -313,6 +431,29 @@ details > :not(summary){padding:0 14px 14px}
         </tbody>
       </table></div>
       <p class="small muted">Lowest fare type with no bags and seats only at check-in. Add about $300 to $500 for checked bags and sitting together. Converted at 1.38 CAD per USD. About two-thirds of each fare is taxes and fees. Kayak's February average for this route is about $750 per person, so $1,760 for three seats plus a lap infant is already well below a typical February price.</p>
+      <div class="avoid" id="avoid">
+        <h3>Dates to avoid</h3>
+        <div class="cols">
+          <div><h4>Flights</h4>
+            <ul class="plain small no">
+              <li><strong>Leaving Sat Feb 13</strong>: $4,010 for the four of you, about 2.3 times a normal week. That weekend stacks the PA day (Fri Feb 12), Valentine's Day and the Super Bowl (Sun Feb 14), and Family Day plus US Presidents' Day (Mon Feb 15).</li>
+              <li><strong>Any Saturday in early February</strong>: $200 to $700 more than the Tuesday next to it.</li>
+              <li><strong>Feb 12–16 on sale fares</strong>: last year Air Canada blacked out Feb 12–16 and WestJet Feb 13–16 from their Black Friday sales.</li>
+              <li><strong>Returning on a Friday</strong>: 10-night trips that came home on a Friday were $3,060 to $3,400.</li>
+              <li><strong>From Feb 20 on</strong>: the cheapest options are all Flair, at $2,200 to $2,390.</li>
+            </ul>
+          </div>
+          <div><h4>Stays</h4>
+            <ul class="plain small no">
+              <li><strong>Fri Feb 12 – Mon Feb 15</strong>: the US Presidents' Day long weekend brings American visitors. The condos priced here showed no surge for Feb 9–16, but check the nightly rate for those nights before paying.</li>
+              <li><strong>Sun Feb 14 dinner</strong>: Valentine's Day and the Super Bowl on the same night. Book a table by mid-January or eat in.</li>
+              <li><strong>Sat Jan 30 – Mon Feb 1</strong>: Mexico's Constitution Day long weekend fills hotels with domestic travellers. It ends before a Feb 2 arrival.</li>
+              <li><strong>Huatulco</strong>: no nonstop flights were found for the Feb 13 or Feb 20 Saturdays.</li>
+              <li><strong>Los Cabos</strong>: Presidents' Day weekend is the most expensive of the year. Local guides suggest Feb 1–12 or after Feb 18.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="sec" id="calendar" aria-labelledby="calendar-h">
@@ -366,77 +507,156 @@ details > :not(summary){padding:0 14px 14px}
     </section>
 
     <section class="sec" id="stay" aria-labelledby="stay-h">
-      <div class="sec-h"><span class="eyebrow">Hidden gems · live quotes, Feb 9–16</span><h2 id="stay-h">Where to stay: clean, modern, not expensive</h2>
-      <p class="bl">North Bucerías to Tizate has the calmest small-wave beach on the bay and a cluster of new small buildings with few reviews yet. That's where the gems are.</p></div>
-      <div class="stays">
-        <article class="stay top">
-          <div class="stay-h"><div class="rk">1</div><h3>Itare Beach House<span class="area">North Bucerías · 1-bedroom suites with kitchenette</span></h3></div>
-          <div class="price"><b>$225</b><span>a night · $1,575 for 7 nights</span></div>
-          <div class="meta"><span>9.2 from 219 reviews</span><span>Cleanliness 9.4</span><span>50 m to the beach</span></div>
-          <div class="pc">
-            <div class="pros"><h4>Why</h4><ul><li>No highway to cross to Playa Los Picos.</li><li>Guests repeatedly call the pool "clean, warm, relaxing."</li><li>Strongest review count of any gem here.</li></ul></div>
-            <div class="cons"><h4>Watch</h4><ul><li>Several reviews mention construction noise nearby. Ask for a unit facing away from it.</li><li>No 2-bedroom units. With Grandma, book two suites.</li></ul></div>
-          </div>
-          <div class="btn-row"><a class="btn" href="https://www.booking.com/hotel/mx/itare-beach-house.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div>
-        </article>
-        <article class="stay">
-          <div class="stay-h"><div class="rk">2</div><h3>Nuevo y Moderno Depto en Tizate<span class="area">Bucerías / La Cruz · 2 bedrooms with doors, kitchenette</span></h3></div>
-          <div class="price"><b>$315</b><span>a night · $2,202 for 7 nights</span></div>
-          <div class="meta"><span>9.3 from 18 reviews</span><span>Beachfront</span><span>Heated rooftop pool</span></div>
-          <div class="pc">
-            <div class="pros"><h4>Why</h4><ul><li>Infinity pool <em>with a shallow end</em>. February water is 23 to 25°C, cool for a baby, so a heated pool matters.</li><li>Reviewers praise cleanliness and modern design. Best match for "feels luxurious."</li></ul></div>
-            <div class="cons"><h4>Watch</h4><ul><li>Rooftop pool needs close supervision.</li><li>Small review base. Some Tizate units are sold with "no refund for any reason" terms, so book only a free-cancellation rate.</li></ul></div>
-          </div>
-          <div class="btn-row"><a class="btn" href="https://www.booking.com/hotel/mx/nuevo-y-moderno-depto-en-tizate.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div>
-        </article>
-        <article class="stay">
-          <div class="stay-h"><div class="rk">3</div><h3>Stanza Bucerías<span class="area">Calle Orquídea · 2BR/2BA, full kitchen, elevator, pool</span></h3></div>
-          <div class="price"><b>$220</b><span>a night · $1,538 for 7 nights</span></div>
-          <div class="meta"><span>9.3 from 6 reviews</span><span>Sleeps 6</span><span>New building</span></div>
-          <div class="pc">
-            <div class="pros"><h4>Why</h4><ul><li>Cheapest real 2-bedroom, and it fits Grandma.</li><li>Also on Expedia as "Stanza 11" for about $190 a night.</li></ul></div>
-            <div class="cons"><h4>Watch</h4><ul><li>12 to 15 minute walk to the beach, likely across the highway.</li><li>No shallow kids' area mentioned, and some maintenance comments. The value pick, not the beach pick.</li></ul></div>
-          </div>
-          <div class="btn-row"><a class="btn" href="https://www.booking.com/hotel/mx/stanza-bucerias-condos-pool-parking-near-beach.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div>
-        </article>
-        <article class="stay">
-          <div class="stay-h"><div class="rk">4</div><h3>Marina Banderas Suites<span class="area">Nuevo Vallarta marina · boutique hotel, larger suites have full kitchens</span></h3></div>
-          <div class="price"><b>~$359</b><span>a night · room type not confirmed</span></div>
-          <div class="meta"><span>9.0 from 336 reviews</span><span>Hotel service</span></div>
-          <div class="pc">
-            <div class="pros"><h4>Why</h4><ul><li>A 2-bedroom suite of about 110 m² that sleeps up to 8. Good for Grandma.</li></ul></div>
-            <div class="cons"><h4>Watch</h4><ul><li>Not on the beach: about a 10-minute walk to Playa Vidanta. Limited parking.</li></ul></div>
-          </div>
-          <div class="btn-row"><a class="btn ghost" href="https://www.expedia.com/.h21361325.Hotel-Information">Expedia listing</a></div>
-        </article>
-        <article class="stay">
-          <div class="stay-h"><div class="rk">5</div><h3>B Nayar or Alamar condos<span class="area">La Cruz · gated condos with beach clubs, kids' pools and kids' clubs</span></h3></div>
-          <div class="price"><b>$310–415</b><span>a night · 2BR to 3BR</span></div>
-          <div class="meta"><span>Airbnb 4.82</span><span>Best Grandma layout</span></div>
-          <div class="pc">
-            <div class="pros"><h4>Why</h4><ul><li>The B Nayar 3BR "Villa 64" (about $414) is the best Grandma layout found.</li></ul></div>
-            <div class="cons"><h4>Watch</h4><ul><li>B Nayar's beach is partly rocky and its club fees are listed inconsistently. Alamar's club is across the highway, so you'd drive or shuttle there.</li></ul></div>
-          </div>
-          <div class="btn-row"><a class="btn ghost" href="https://www.expedia.com/.h97771233.Hotel-Information">B Nayar Villa 64</a><a class="btn ghost" href="https://www.expedia.com/.h99798251.Hotel-Information">Alamar 2BR</a></div>
-        </article>
-      </div>
-      <div class="cols">
-        <div><h3>Worth the splurge</h3>
-          <p><strong>Velas Vallarta Suites</strong>, Marina Vallarta, all-inclusive: about <span class="num">$577/night</span> (US$4,129 for the week), 9.2 from 1,003 reviews. Every room is a suite with a kitchen, and there's a kids' pool and kids' club. For all-inclusive, this was the standout value. Rooms are slightly dated and the beach is pretty rather than great.</p>
-          <p><strong>Villa La Estancia</strong>, Flamingos: about <span class="num">$836/night</span>. Real 1 to 3 bedroom villas, kids' pool, calm beach. The luxury option if budget stretches.</p>
+      <div class="sec-h"><span class="eyebrow">Hidden gems · live quotes from Oct 12, 2026</span><h2 id="stay-h">Find a stay</h2>
+      <p class="bl">North Bucerías to Tizate has the calmest small-wave beach on the bay and a cluster of new small buildings with few reviews yet. Top picks are numbered. Filter, compare, then add one to the budget.</p></div>
+
+      <div class="filters" id="filters">
+        <div class="seg" role="radiogroup" aria-label="Destination" id="fDest">
+          <button type="button" data-v="pv" aria-pressed="true">Vallarta</button>
+          <button type="button" data-v="hux" aria-pressed="false">Huatulco</button>
+          <button type="button" data-v="sjd" aria-pressed="false">Los Cabos</button>
+          <button type="button" data-v="all" aria-pressed="false">All</button>
         </div>
+        <div class="frow">
+          <label class="fld grow" for="fPrice"><span>Max per night <b class="num" id="fPriceOut">$900</b></span>
+            <input type="range" id="fPrice" min="150" max="1200" step="25" value="1200"></label>
+          <label class="fld" for="fSort"><span>Sort</span>
+            <select id="fSort"><option value="rank">Top picks first</option><option value="price">Price, low to high</option><option value="rating">Rating, high to low</option><option value="beach">Closest to the beach</option><option value="br">Most bedrooms</option></select></label>
+        </div>
+        <details class="fmore" id="fMore">
+          <summary>More filters <span class="fcount" id="fCount"></span></summary>
+          <div class="fgrid">
+            <div class="fgroup"><span class="flabel">Bedrooms</span>
+              <div class="seg sm" id="fBr" role="radiogroup" aria-label="Bedrooms">
+                <button type="button" data-v="0" aria-pressed="true">Any</button><button type="button" data-v="1" aria-pressed="false">1+</button><button type="button" data-v="2" aria-pressed="false">2+</button><button type="button" data-v="3" aria-pressed="false">3+</button>
+              </div></div>
+            <div class="fgroup"><span class="flabel">Guest rating</span>
+              <div class="seg sm" id="fRating" role="radiogroup" aria-label="Guest rating">
+                <button type="button" data-v="0" aria-pressed="true">Any</button><button type="button" data-v="8.5" aria-pressed="false">8.5+</button><button type="button" data-v="9" aria-pressed="false">9+</button>
+              </div></div>
+            <div class="fgroup"><span class="flabel">Type</span><div class="chips" id="fType"></div></div>
+            <div class="fgroup"><span class="flabel">Area</span><div class="chips" id="fArea"></div></div>
+            <div class="fgroup wide"><span class="flabel">Must have</span><div class="chips" id="fAmen"></div></div>
+          </div>
+        </details>
+        <div class="fstatus"><span id="fResult" class="small muted" aria-live="polite"></span><button type="button" class="linkbtn" id="fClear">Clear filters</button></div>
+      </div>
+
+      <div class="stays" id="stayList"></div>
+
+      <div class="cols">
         <div><h3>Skip these</h3>
-          <ul class="plain small">
+          <ul class="plain small no">
             <li><strong>Vidanta, Grand Bliss, Mayan Palace owner rentals:</strong> cheap at first, then mandatory guest fees ($42/day or a $299 flat fee) and hours-long timeshare pitches.</li>
             <li><strong>Villa del Palmar Flamingos:</strong> aggressive timeshare sales.</li>
             <li><strong>Paradise Village:</strong> fun pools, but basic rooms and a timeshare resort.</li>
             <li><strong>Posada de Bucerías:</strong> blogs recommend it, but it's adults-only on Booking.</li>
-            <li><strong>Hotel Cielo Rojo:</strong> in San Pancho, and the family suite has no kitchen.</li>
-            <li><strong>Grand Matlali, Villa Varadero, Bel Air:</strong> mixed cleanliness scores or dated rooms.</li>
           </ul>
         </div>
+        <div><h3>Before you pay</h3>
+          <p class="small muted">Booking.com may quote the cheapest unit that fits four. Open the listing and pick the exact 2-bedroom (or 1-bedroom with a door) before comparing. Ask the host to confirm a closing bedroom door, crib, AC, toddler pool, and every fee for all five of you. Prices marked "estimate" came from listing pages, not a live quote for your dates.</p>
+        </div>
       </div>
-      <p class="small muted">Booking.com may quote the cheapest unit that fits four. Open each listing and pick the exact 2-bedroom (or 1-bedroom with a door) before comparing. These properties showed no Presidents' Day surge for Feb 9–16, but confirm the total on the final screen. Before paying, send the host the message from the trip guide: closing bedroom door, crib, AC, toddler pool, every fee for all five.</p>
+    </section>
+
+    <section class="sec" id="budget" aria-labelledby="budget-h">
+      <div class="sec-h"><span class="eyebrow">Live budget</span><h2 id="budget-h">Build the trip, see the total</h2>
+      <p class="bl">Every line can be switched on or off. Change the flight, the stay, the food plan or the extras and the total updates as you go. Your choices are saved on this device.</p></div>
+
+      <div class="bsum" id="bsum">
+        <div class="bsum-top">
+          <div><span class="k">Trip total</span><div class="btotal num" id="bTotal">$0</div><div class="small muted" id="bSub"></div></div>
+          <label class="fld ceil" for="bCeiling"><span>Budget ceiling</span><span class="money"><span aria-hidden="true">$</span><input type="number" id="bCeiling" inputmode="numeric" min="0" step="100" value="6500"></span></label>
+        </div>
+        <div class="cbar" aria-hidden="true"><div class="cbar-fill" id="bCeilFill"></div></div>
+        <div class="small" id="bCeilText"></div>
+        <div class="stack" id="bStack" role="img" aria-label="Budget by category"></div>
+        <ul class="legend" id="bLegend"></ul>
+        <ul class="warns" id="bWarn"></ul>
+        <div class="btn-row"><button type="button" class="btn ghost" id="bReset">Reset to the recommended plan</button><button type="button" class="btn ghost" id="bNone">Switch everything off</button></div>
+      </div>
+
+      <div class="bgroups">
+
+        <div class="bg" data-group="flights">
+          <div class="bg-h"><label class="sw"><input type="checkbox" data-bind="groups.flights"><span class="sw-ui" aria-hidden="true"></span><span class="bg-title">Flights</span></label><span class="bg-sub num" data-sub="flights"></span></div>
+          <div class="bg-b">
+            <fieldset class="opts" id="bFlights"><legend class="vh">Flight option</legend></fieldset>
+            <div class="ctrls">
+              <label class="tg"><input type="checkbox" data-bind="grandma"><span>Grandma comes</span></label>
+              <div class="seg sm" data-seg="grandmaSeat" aria-label="Grandma's seat"><button type="button" data-v="cash">Her seat in cash</button><button type="button" data-v="points">On Aeroplan points</button></div>
+              <div class="stepper"><span>Checked bags</span><button type="button" data-step="bags:-1" aria-label="One fewer bag">−</button><output class="num" data-out="bags"></output><button type="button" data-step="bags:1" aria-label="One more bag">+</button></div>
+              <label class="tg"><input type="checkbox" data-bind="seats"><span>Pay to sit together</span></label>
+              <label class="tg"><input type="checkbox" data-bind="acCard"><span>We have an Aeroplan credit card (free first bags on Air Canada)</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg" data-group="stay">
+          <div class="bg-h"><label class="sw"><input type="checkbox" data-bind="groups.stay"><span class="sw-ui" aria-hidden="true"></span><span class="bg-title">Stay</span></label><span class="bg-sub num" data-sub="stay"></span></div>
+          <div class="bg-b">
+            <label class="fld" for="bStay"><span>Where you sleep</span><select id="bStay" data-bind="stay"></select></label>
+            <label class="tg"><input type="checkbox" data-bind="resortOn"><span>Add a few resort nights (hybrid plan)</span></label>
+            <div class="ctrls" data-show="resortOn">
+              <label class="fld" for="bResort"><span>Resort</span><select id="bResort" data-bind="resort"></select></label>
+              <div class="stepper"><span>Resort nights</span><button type="button" data-step="resortNights:-1" aria-label="One fewer resort night">−</button><output class="num" data-out="resortNights"></output><button type="button" data-step="resortNights:1" aria-label="One more resort night">+</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg" data-group="ground">
+          <div class="bg-h"><label class="sw"><input type="checkbox" data-bind="groups.ground"><span class="sw-ui" aria-hidden="true"></span><span class="bg-title">Getting around</span></label><span class="bg-sub num" data-sub="ground"></span></div>
+          <div class="bg-b">
+            <div class="fgroup"><span class="flabel">Puerto Vallarta airport ↔ stay</span>
+              <div class="seg sm wrap" data-seg="transfer"><button type="button" data-v="van">Private van, car seats</button><button type="button" data-v="taxi">Airport taxi</button><button type="button" data-v="none">None</button></div></div>
+            <label class="tg"><input type="checkbox" data-bind="car"><span>Rent a car</span></label>
+            <div class="stepper" data-show="car"><span>Rental days</span><button type="button" data-step="carDays:-1" aria-label="One fewer day">−</button><output class="num" data-out="carDays"></output><button type="button" data-step="carDays:1" aria-label="One more day">+</button></div>
+            <div class="fgroup"><span class="flabel">Getting to Pearson</span>
+              <div class="seg sm wrap" data-seg="yyz"><button type="button" data-v="uber">Uber XL both ways</button><button type="button" data-v="park">Park at Pearson</button><button type="button" data-v="none">Free ride</button></div></div>
+          </div>
+        </div>
+
+        <div class="bg" data-group="baby">
+          <div class="bg-h"><label class="sw"><input type="checkbox" data-bind="groups.baby"><span class="sw-ui" aria-hidden="true"></span><span class="bg-title">Baby and kid gear rental</span></label><span class="bg-sub num" data-sub="baby"></span></div>
+          <div class="bg-b"><div class="ctrls" id="bBaby"></div>
+            <p class="small muted">Baby Vallarta and Baby Bliss deliver to Bucerías. Ask the condo first: many supply a crib or pack-and-play free.</p></div>
+        </div>
+
+        <div class="bg" data-group="food">
+          <div class="bg-h"><label class="sw"><input type="checkbox" data-bind="groups.food"><span class="sw-ui" aria-hidden="true"></span><span class="bg-title">Food</span></label><span class="bg-sub num" data-sub="food"></span></div>
+          <div class="bg-b"><div class="ctrls">
+            <label class="tg"><input type="checkbox" data-bind="food.groceries"><span>Groceries for breakfasts and lunches</span></label>
+            <div class="stepper"><span>Nice dinners</span><button type="button" data-step="food.nice:-1" aria-label="One fewer nice dinner">−</button><output class="num" data-out="food.nice"></output><button type="button" data-step="food.nice:1" aria-label="One more nice dinner">+</button></div>
+            <div class="stepper"><span>Street-food nights</span><button type="button" data-step="food.street:-1" aria-label="One fewer street-food night">−</button><output class="num" data-out="food.street"></output><button type="button" data-step="food.street:1" aria-label="One more street-food night">+</button></div>
+            <div class="stepper"><span>Lunches out</span><button type="button" data-step="food.lunches:-1" aria-label="One fewer lunch out">−</button><output class="num" data-out="food.lunches"></output><button type="button" data-step="food.lunches:1" aria-label="One more lunch out">+</button></div>
+            <label class="tg"><input type="checkbox" data-bind="food.treats"><span>Coffee, ice cream, coconuts</span></label>
+            <label class="tg"><input type="checkbox" data-bind="food.gf"><span>Laura's gluten-free food packed from home</span></label>
+          </div>
+          <p class="small muted">All-inclusive nights drop the groceries and treats for those days.</p></div>
+        </div>
+
+        <div class="bg" data-group="acts">
+          <div class="bg-h"><label class="sw"><input type="checkbox" data-bind="groups.acts"><span class="sw-ui" aria-hidden="true"></span><span class="bg-title">Things to do</span></label><span class="bg-sub num" data-sub="acts"></span></div>
+          <div class="bg-b"><div class="ctrls" id="bActs"></div></div>
+        </div>
+
+        <div class="bg" data-group="other">
+          <div class="bg-h"><label class="sw"><input type="checkbox" data-bind="groups.other"><span class="sw-ui" aria-hidden="true"></span><span class="bg-title">Insurance, phone and extras</span></label><span class="bg-sub num" data-sub="other"></span></div>
+          <div class="bg-b"><div class="ctrls">
+            <label class="tg"><input type="checkbox" data-bind="insurance"><span>Travel medical and trip-interruption insurance</span></label>
+            <div class="fgroup"><span class="flabel">Phone data</span>
+              <div class="seg sm wrap" data-seg="phone"><button type="button" data-v="plan">Switch one plan to Canada–US–Mexico</button><button type="button" data-v="roam1">Roam on 1 phone</button><button type="button" data-v="roam2">Roam on 2 phones</button><button type="button" data-v="none">None</button></div></div>
+            <label class="tg"><input type="checkbox" data-bind="tips"><span>Tips for housekeeping, drivers and porters</span></label>
+            <label class="tg"><input type="checkbox" data-bind="passport"><span>Baby's passport</span></label>
+            <div class="fgroup"><span class="flabel">Buffer for surprises</span>
+              <div class="seg sm" data-seg="buffer"><button type="button" data-v="0">None</button><button type="button" data-v="250">$250</button><button type="button" data-v="500">$500</button></div></div>
+          </div></div>
+        </div>
+      </div>
+
+      <details><summary>What the total includes, and where each number comes from</summary>
+        <div class="small" id="bExplain"></div>
+      </details>
     </section>
 
     <section class="sec" id="food" aria-labelledby="food-h">
@@ -698,6 +918,384 @@ details > :not(summary){padding:0 14px 14px}
   function progress(){var n=boxes.filter(function(b){return b.checked}).length;$('#progText').textContent=n+' of '+boxes.length+' done';$('#progFill').style.width=(100*n/boxes.length)+'%';}
   boxes.forEach(function(cb){cb.checked=!!saved[cb.id];cb.addEventListener('change',function(){saved[cb.id]=cb.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}progress();});});
   progress();
+})();
+</script>
+<script>
+/* Stays filter + live budget builder. All prices CAD. USD at 1.38, MXN at 12.5 per CAD. */
+(function(){
+  var $=function(s,c){return (c||document).querySelector(s)}, $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var USD=1.38, MXN=1/12.5;
+  var fmt=function(n){return '$'+Math.round(n).toLocaleString('en-CA')};
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  var BK='https://www.booking.com/hotel/mx/';
+  var Q='?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD';
+
+  /* ---------- Data ---------- */
+  var DEST={pv:'Vallarta area',hux:'Huatulco',sjd:'Los Cabos'};
+  var TYPE={condo:'Condo or apartment',suite:'Hotel suite',ai:'All-inclusive resort',hotel:'Hotel room'};
+  // n = CAD per night for 2 adults + kids 4 and 1; g5 = per night with Grandma (null = not confirmed)
+  // beach = walking minutes to a swimmable beach (0 = beachfront); hwy = crosses the highway to get there
+  var STAYS=[
+    {id:'itare',d:'pv',rank:1,name:'Itare Beach House',area:'North Bucerías',type:'suite',br:1,ba:1,sl:4,k:'kitchenette',beach:1,hwy:false,heated:false,shallow:false,kidsPool:false,kidsClub:false,elev:true,ai:false,r:9.2,rs:10,rc:219,n:225,g5:450,g5note:'two suites',live:true,url:BK+'itare-beach-house.html'+Q,
+      why:['About 50 m to Playa Los Picos with no highway to cross.','Guests repeatedly call the pool "clean, warm, relaxing." Cleanliness 9.4.','Strongest review count of any gem here.'],
+      watch:['Several reviews mention construction noise nearby. Ask for a unit facing away from it.','No 2-bedroom units. With Grandma, book two suites.']},
+    {id:'tizate',d:'pv',rank:2,name:'Nuevo y Moderno Depto en Tizate',area:'Tizate / La Cruz',type:'condo',br:2,ba:null,sl:4,k:'kitchenette',beach:0,hwy:false,heated:true,shallow:true,kidsPool:false,kidsClub:false,elev:true,ai:false,r:9.3,rs:10,rc:18,n:315,g5:null,live:true,url:BK+'nuevo-y-moderno-depto-en-tizate.html'+Q,
+      why:['Heated rooftop infinity pool with a shallow end. February sea water is 23 to 25°C, cool for a baby.','Reviewers praise cleanliness and modern design. Best match for "feels luxurious."'],
+      watch:['Rooftop pool needs close supervision.','Only 18 reviews. Some Tizate units are sold with "no refund for any reason" terms, so book only a free-cancellation rate.']},
+    {id:'stanza',d:'pv',rank:3,name:'Stanza Bucerías',area:'Bucerías',type:'condo',br:2,ba:2,sl:6,k:'full',beach:13,hwy:true,heated:false,shallow:false,kidsPool:false,kidsClub:false,elev:true,ai:false,r:9.3,rs:10,rc:6,n:220,g5:220,live:true,url:BK+'stanza-bucerias-condos-pool-parking-near-beach.html'+Q,
+      why:['Cheapest real 2-bedroom, sleeps 6, so it fits Grandma.','New building with an elevator. Also on Expedia as "Stanza 11" for about $190 a night.'],
+      watch:['12 to 15 minute walk to the beach, likely across the highway.','No shallow kids\' area mentioned, and some maintenance comments. The value pick, not the beach pick.']},
+    {id:'mbs',d:'pv',rank:4,name:'Marina Banderas Suites',area:'Nuevo Vallarta marina',type:'suite',br:2,ba:2,sl:8,k:'full',beach:10,hwy:false,heated:false,shallow:false,kidsPool:false,kidsClub:false,elev:true,ai:false,r:9.0,rs:10,rc:336,n:359,g5:359,live:false,priceNote:'US$260 before taxes; room type not confirmed',url:'https://www.expedia.com/.h21361325.Hotel-Information',
+      why:['Boutique hotel with service. The 2-bedroom suite is about 110 m² and sleeps up to 8.'],
+      watch:['Not on the beach: about a 10-minute walk to Playa Vidanta. Limited parking.']},
+    {id:'bnayar3',d:'pv',rank:5,name:'B Nayar Villa 64 (3 bedrooms)',area:'La Cruz',type:'condo',br:3,ba:null,sl:6,k:'full',beach:5,hwy:false,heated:false,shallow:false,kidsPool:true,kidsClub:true,elev:false,ai:false,r:4.82,rs:5,rc:61,n:414,g5:414,live:true,priceNote:'Expedia quote, US$300',url:'https://www.expedia.com/.h97771233.Hotel-Information',
+      why:['Best Grandma layout found: three bedrooms and a full kitchen.','Shared beach club with a kids\' pool and kids\' club.'],
+      watch:['The beach is partly rocky. Club access fees are listed inconsistently.']},
+    {id:'bnayar2',d:'pv',name:'B Nayar 2-bedroom, Taib Tower',area:'La Cruz',type:'condo',br:2,ba:null,sl:4,k:'full',beach:5,hwy:false,heated:false,shallow:false,kidsPool:true,kidsClub:true,elev:true,ai:false,r:4.82,rs:5,rc:61,n:310,g5:null,live:true,priceNote:'Expedia quote, US$225',url:'https://www.expedia.com/.h76991413.Hotel-Information',
+      why:['Same beach club as Villa 64 at a lower price.'],watch:['Partly rocky beach; confirm club fees and capacity for five.']},
+    {id:'alamar',d:'pv',name:'Alamar 2-bedroom',area:'La Cruz',type:'condo',br:2,ba:2,sl:4,k:'full',beach:8,hwy:true,heated:false,shallow:true,kidsPool:true,kidsClub:true,elev:true,ai:false,r:null,rs:10,rc:2,n:413,g5:null,live:true,priceNote:'Expedia quote, US$299',url:'https://www.expedia.com/.h99798251.Hotel-Information',
+      why:['Modern gated complex. The beach club has a kids\' club and a "family lagoon".'],watch:['The beach club is across the highway, so you drive or shuttle. Only 2 reviews for this unit.']},
+    {id:'velas',d:'pv',name:'Velas Vallarta Suites (all-inclusive)',area:'Marina Vallarta',type:'ai',br:1,ba:1,sl:4,k:'kitchenette',beach:0,hwy:false,heated:false,shallow:true,kidsPool:true,kidsClub:true,elev:true,ai:true,resort:true,r:9.2,rs:10,rc:1003,n:814,g5:null,live:true,priceNote:'US$4,129 for 7 nights with taxes',url:'https://www.expedia.com/.h1681.Hotel-Information',
+      why:['Every room is a suite with a kitchenette. Kids\' pool, kids\' club and a lazy river.','The standout all-inclusive value. Good for 2 resort nights in a hybrid plan.'],
+      watch:['Rooms are slightly dated and the beach is pretty rather than great. Grandma needs a 2-bedroom suite or second room.']},
+    {id:'estancia',d:'pv',name:'Villa La Estancia',area:'Flamingos',type:'suite',br:1,ba:1,sl:4,k:'full',beach:0,hwy:false,heated:false,shallow:true,kidsPool:true,kidsClub:true,elev:true,ai:false,resort:true,r:8.6,rs:10,rc:67,n:836,g5:null,live:true,url:BK+'villa-la-estancia-beach-resort.html'+Q,
+      why:['Real 1- to 3-bedroom villas with full kitchens on a calm beach. Kids\' pool and kids\' club.'],watch:['The luxury option. Quote is the cheapest unit; 2-bedroom villas cost more.']},
+    {id:'hardrock',d:'pv',name:'Hard Rock Hotel Vallarta (all-inclusive)',area:'Nuevo Vallarta',type:'ai',br:0,ba:1,sl:4,k:'none',beach:0,hwy:false,heated:false,shallow:true,kidsPool:true,kidsClub:true,elev:true,ai:true,resort:true,r:8.6,rs:10,rc:1272,n:841,g5:null,live:true,priceNote:'US$4,267 for 7 nights',url:'https://www.expedia.com/.h5216008.Hotel-Information',
+      why:['Big family all-inclusive 15 minutes from the airport. Good for the first 2 nights.'],watch:['A standard room means everyone sleeps in one room at 8:30 pm.']},
+    {id:'grandvelas',d:'pv',name:'Grand Velas Riviera Nayarit (all-inclusive)',area:'Nuevo Vallarta',type:'ai',br:1,ba:1,sl:4,k:'none',beach:0,hwy:false,heated:false,shallow:true,kidsPool:true,kidsClub:true,elev:true,ai:true,resort:true,r:9.6,rs:10,rc:1000,n:1921,g5:null,live:true,priceNote:'US$9,743 for 7 nights',url:'https://www.expedia.com/.h996714.Hotel-Information',
+      why:['All suites, a strong kids\' club, top reviews. A one-night splurge.'],watch:['About $1,900 a night.']},
+    {id:'eos',d:'hux',name:'EOS Suites',area:'Santa Cruz',type:'condo',br:2,ba:null,sl:4,k:'full',beach:3,hwy:false,heated:false,shallow:true,kidsPool:false,kidsClub:false,elev:false,ai:false,r:8.6,rs:10,rc:22,n:244,g5:null,live:true,priceNote:'Quote for Feb 6–13',url:BK+'eos-suites.html',
+      why:['Rooftop pool with a shallow end, a fence around the pool and baby gates. 3-minute walk to calm Santa Cruz beach.'],watch:['Only 22 reviews; some mention missing kitchen items.']},
+    {id:'nabani',d:'hux',name:'Nabani Condominios',area:'Santa Cruz',type:'condo',br:2,ba:null,sl:4,k:'full',beach:9,hwy:false,heated:false,shallow:false,kidsPool:false,kidsClub:false,elev:false,ai:false,r:9.4,rs:10,rc:133,n:375,g5:null,live:true,priceNote:'Quote for Feb 6–13',url:BK+'nabani-condominios-t1.html',
+      why:['Highest-rated condo building in Huatulco. Modern and clean.'],watch:['Construction noise nearby; rooftop pool railings to check.']},
+    {id:'zaashila',d:'hux',name:'Camino Real Zaashila condos',area:'Tangolunda',type:'condo',br:1,ba:null,sl:4,k:'kitchenette',beach:2,hwy:false,heated:false,shallow:true,kidsPool:true,kidsClub:false,elev:false,ai:false,r:8.6,rs:10,rc:43,n:280,g5:null,live:true,priceNote:'Quote for Feb 6–13',url:BK+'camino-real-zaachila-condos.html',
+      why:['Kitchen plus the hotel\'s private, sheltered beach and big pools.'],watch:['Confirm the bedroom count; the hotel rooms are dated.']},
+    {id:'coralblue',d:'hux',name:'Coral Blue Huatulco (all-inclusive)',area:'Chahué',type:'ai',br:0,ba:1,sl:4,k:'none',beach:10,hwy:false,heated:false,shallow:true,kidsPool:true,kidsClub:false,elev:false,ai:true,r:8.6,rs:10,rc:899,n:283,g5:null,live:true,priceNote:'Quote for Feb 6–13',url:BK+'coral-blue-huatulco-huatulco.html',
+      why:['Cheapest all-inclusive found: kids\' pool and water park.'],watch:['Sits on a cliff, so stairs or a shuttle to a rougher beach.']},
+    {id:'barcelo',d:'hux',name:'Barceló Huatulco (all-inclusive)',area:'Tangolunda',type:'ai',br:0,ba:1,sl:4,k:'none',beach:0,hwy:false,heated:false,shallow:true,kidsPool:true,kidsClub:true,elev:true,ai:true,r:8.8,rs:10,rc:null,n:499,g5:null,live:true,priceNote:'Quote for Feb 6–13',url:BK+'barcelo-huatulco-beach.html',
+      why:['On the gentle east end of Tangolunda. Kids\' pool, water park and kids\' club.'],watch:['Standard rooms sleep 4 maximum.']},
+    {id:'lumina',d:'sjd',name:'Lumina at Marea',area:'Médano Beach',type:'condo',br:2,ba:2,sl:6,k:'full',beach:6,hwy:false,heated:false,shallow:false,kidsPool:false,kidsClub:false,elev:true,ai:false,r:9.5,rs:10,rc:41,n:304,g5:304,live:true,priceNote:'Quote for Feb 6–13',url:BK+'lumina-at-marea-cabos-san-lucas.html',
+      why:['New tower, full kitchen and washer-dryer, 6-minute walk to calm Médano.'],watch:['Street noise late at night. Ask for a high unit away from the street.']},
+    {id:'paraiso',d:'sjd',name:'Condo Paraiso',area:'Médano Beach',type:'condo',br:2,ba:null,sl:4,k:'full',beach:12,hwy:true,heated:false,shallow:false,kidsPool:false,kidsClub:false,elev:false,ai:false,r:9.6,rs:10,rc:43,n:326,g5:null,live:true,priceNote:'Quote for Feb 6–13',url:BK+'condo-paraiso-luxurious-new-condo-300mt-from-the-beach.html',
+      why:['Guests call it clean and luxurious, and it\'s quieter than the main strip.'],watch:['12-minute walk with a likely highway crossing.']},
+    {id:'medanohotel',d:'sjd',name:'Medano Hotel & Spa',area:'Médano Beach',type:'hotel',br:0,ba:1,sl:4,k:'none',beach:7,hwy:false,heated:false,shallow:true,kidsPool:true,kidsClub:false,elev:false,ai:false,r:8.8,rs:10,rc:758,n:186,g5:null,live:true,priceNote:'Quote for Feb 6–13',url:BK+'medano-and-suites.html',
+      why:['Budget fallback with a shallow pool area and kids\' play area.'],watch:['One room, no kitchen.']}
+  ];
+  var byId={};STAYS.forEach(function(s){byId[s.id]=s});
+
+  // cad = total for 2 adults + 4-year-old + lap baby. gm = Grandma's seat in cash. bag = per checked bag, round trip.
+  var FLIGHTS=[
+    {id:'wj916',d:'pv',label:'Tue Feb 9 – Tue Feb 16',desc:'WestJet both ways · 7:20 am out, 1:10 pm back · recommended',cad:1760,nights:7,gm:410,bag:160,carrier:'wj',live:true},
+    {id:'wjf29',d:'pv',label:'Tue Feb 2 – Tue Feb 9',desc:'WestJet out, Flair back · cheapest, two bookings',cad:1628,nights:7,gm:400,bag:120,carrier:'wj',live:true},
+    {id:'wj29',d:'pv',label:'Tue Feb 2 – Tue Feb 9',desc:'WestJet both ways',cad:1760,nights:7,gm:410,bag:160,carrier:'wj',live:true},
+    {id:'wj1623',d:'pv',label:'Tue Feb 16 – Tue Feb 23',desc:'WestJet both ways · leaves the day after Family Day',cad:1710,nights:7,gm:400,bag:160,carrier:'wj',live:true},
+    {id:'ac916',d:'pv',label:'Tue Feb 9 – Tue Feb 16',desc:'Air Canada Basic both ways · 8:05 am out · baby pays ~$400',cad:2498,nights:7,gm:602,bag:90,carrier:'ac',live:true},
+    {id:'aero',d:'pv',label:'Tue Feb 9 – Tue Feb 16',desc:'Air Canada out on Aeroplan points, WestJet back in cash',cad:1280,nights:7,gm:500,bag:125,carrier:'ac',points:45000,live:false},
+    {id:'ten',d:'pv',label:'Sat Feb 20 – Tue Mar 2',desc:'10 nights, Flair both ways',cad:2390,nights:10,gm:600,bag:80,carrier:'f8',live:true},
+    {id:'sat13',d:'pv',label:'Sat Feb 13 – Sat Feb 20',desc:'Family Day long weekend · the dates to avoid',cad:4010,nights:7,gm:1280,bag:160,carrier:'wj',live:true,avoid:true},
+    {id:'hux',d:'hux',label:'Huatulco: Sat Feb 6 – Sat Feb 13',desc:'Air Canada nonstop · few flights a week',cad:4500,nights:7,gm:1300,bag:90,carrier:'ac',live:true},
+    {id:'sjd',d:'sjd',label:'Los Cabos: about 7 nights in February',desc:'Air Canada, WestJet or Porter · estimate, not a live quote',cad:3300,nights:7,gm:1000,bag:120,carrier:'mix',live:false}
+  ];
+  var flightById={};FLIGHTS.forEach(function(f){flightById[f.id]=f});
+
+  var BABY=[
+    {k:'crib',label:'Full-size crib',mxn:358},
+    {k:'pnp',label:'Pack-and-play',mxn:193},
+    {k:'chair',label:'High chair',mxn:124},
+    {k:'jogger',label:'Jogging stroller',mxn:210},
+    {k:'umbrella',label:'Umbrella stroller',mxn:130}
+  ];
+  var ACTS=[
+    {k:'whales',label:'Whale-watching catamaran from La Cruz',fn:function(g){return (160+50+(g?80:0))*USD}},
+    {k:'anclote',label:'El Anclote calm-beach day, Punta de Mita (taxi)',fn:function(){return 60}},
+    {k:'pvday',label:'Puerto Vallarta day: Malecón and La Bendita lunch (taxi)',fn:function(){return 60}},
+    {k:'splash',label:'Splash water park, Nuevo Vallarta',fn:function(g){return (500+170+(g?250:0))*MXN}},
+    {k:'garden',label:'Vallarta Botanical Garden (entry and taxi)',fn:function(g){return (600+(g?300:0))*MXN+90}},
+    {k:'sayulita',label:'Sayulita and San Pancho day trip (taxi)',fn:function(){return 90}}
+  ];
+  var FOOD={groceries:70,nice:260,street:50,lunches:75,treats:15,gf:60};
+
+  var DEFAULTS={flight:'wj916',grandma:false,grandmaSeat:'cash',bags:2,seats:true,acCard:false,
+    stay:'itare',resortOn:false,resort:'velas',resortNights:2,
+    transfer:'van',car:false,carDays:3,yyz:'uber',
+    baby:{crib:false,pnp:true,chair:true,jogger:true,umbrella:false},
+    food:{groceries:true,nice:3,street:2,lunches:3,treats:true,gf:true},
+    acts:{whales:true,anclote:true,pvday:true,splash:false,garden:false,sayulita:false},
+    insurance:true,phone:'plan',tips:true,passport:true,buffer:250,ceiling:6500,
+    groups:{flights:true,stay:true,ground:true,baby:true,food:true,acts:true,other:true}};
+  var GROUPS=[['flights','Flights'],['stay','Stay'],['ground','Getting around'],['baby','Baby gear'],['food','Food'],['acts','Things to do'],['other','Insurance and extras']];
+
+  var KEY='vbp-budget-v1';
+  function clone(o){return JSON.parse(JSON.stringify(o))}
+  function merge(base,over){Object.keys(over||{}).forEach(function(k){
+    if(base[k]&&typeof base[k]==='object'&&!Array.isArray(base[k]))merge(base[k],over[k]);else if(k in base)base[k]=over[k];});return base;}
+  var S=clone(DEFAULTS);
+  try{merge(S,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
+  if(S.flight&&!flightById[S.flight])S.flight=DEFAULTS.flight;
+  if(S.stay&&!byId[S.stay])S.stay=DEFAULTS.stay;
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+  function get(p){return p.split('.').reduce(function(o,k){return o==null?o:o[k]},S)}
+  function set(p,v){var ks=p.split('.'),o=S;ks.slice(0,-1).forEach(function(k){o=o[k]});o[ks[ks.length-1]]=v;}
+
+  function fits5(s){return s.g5!=null||s.sl>=5}
+  function nightly(s){return S.grandma?(s.g5!=null?s.g5:s.n):s.n}
+
+  /* ---------- Budget maths ---------- */
+  function compute(){
+    var f=flightById[S.flight]||null, nights=f?f.nights:7, g=S.grandma, pax=g?4:3;
+    var out={groups:{},total:0,points:0,warn:[],nights:nights};
+    function add(group,label,amt,note){var G=out.groups[group]||(out.groups[group]={lines:[],sum:0});G.lines.push({label:label,amt:amt,note:note||''});G.sum+=amt;}
+    GROUPS.forEach(function(x){out.groups[x[0]]={lines:[],sum:0}});
+
+    // Flights
+    if(f){
+      add('flights','Fares for 2 adults, the 4-year-old and a lap baby',f.cad,f.label);
+      if(f.points){out.points+=f.points;}
+      if(g){ if(S.grandmaSeat==='points'){add('flights',"Grandma's seat on Aeroplan: taxes",460);out.points+=30000;}
+             else add('flights',"Grandma's seat",f.gm); }
+      var freeBags=(S.acCard&&f.carrier==='ac')?Math.min(S.bags,pax):0;
+      if(S.bags) add('flights',S.bags+' checked bag'+(S.bags>1?'s':'')+', round trip',(S.bags-freeBags)*f.bag,freeBags?freeBags+' free with the Aeroplan card':'');
+      if(S.seats) add('flights','Seats together',pax*2*25,'about $25 a seat each way');
+      if(f.avoid) out.warn.push('Sat Feb 13 is the weekend to avoid: about $2,300 more than the Tuesdays either side.');
+    } else out.warn.push('No flight selected. The total leaves out airfare.');
+
+    // Stay
+    var st=byId[S.stay]||null, aiNights=0, rn=0;
+    if(S.resortOn){ var rs=byId[S.resort]; rn=Math.min(S.resortNights,nights);
+      if(rs&&rn>0){ add('stay',rs.name+' × '+rn+' night'+(rn>1?'s':''),nightly(rs)*rn); if(rs.ai)aiNights+=rn;
+        if(g&&rs.g5==null) out.warn.push(rs.name+' quote is for four. Grandma needs a second room or a bigger suite there.'); } }
+    if(st){ var cn=nights-rn; if(cn>0){ add('stay',st.name+' × '+cn+' night'+(cn>1?'s':''),nightly(st)*cn,st.g5note&&g?st.g5note:''); if(st.ai)aiNights+=cn; }
+      if(f&&st.d!==f.d) out.warn.push(st.name+' is in '+DEST[st.d]+', but the flight goes to '+DEST[f.d]+'.');
+      if(g&&!fits5(st)) out.warn.push(st.name+' was quoted for four. Confirm it takes five, or pick a stay that fits Grandma.');
+      if(S.resortOn&&st.ai) out.warn.push('Your main stay is already all-inclusive, so extra resort nights may be redundant.');
+    } else if(!(S.resortOn&&rn>0)) out.warn.push('No stay selected. The total leaves out lodging.');
+    else if(rn<nights) out.warn.push((nights-rn)+' nights have no stay booked.');
+
+    // Getting around
+    if(S.transfer==='van') add('ground','Private van with car seats, both ways',2*150*USD);
+    if(S.transfer==='taxi') add('ground','Airport taxi, both ways (no car seats)',2*1000*MXN);
+    if(S.car){ add('ground','Rental car × '+S.carDays+' day'+(S.carDays>1?'s':''),S.carDays*75,'about $75 a day with Mexico\'s mandatory insurance');
+      if(S.transfer==='van'&&S.carDays>=nights) out.warn.push('With a car for the whole trip, you may not need the airport van.'); }
+    if(S.yyz==='uber') add('ground','Uber XL to and from Pearson',160);
+    if(S.yyz==='park') add('ground','Parking at Pearson × '+(nights+1)+' days',20*(nights+1));
+
+    // Baby
+    BABY.forEach(function(b){ if(S.baby[b.k]) add('baby',b.label+' × '+nights+' nights',b.mxn*MXN*nights); });
+
+    // Food
+    var m=g?1.2:1, cookDays=Math.max(0,nights-aiNights);
+    if(S.food.groceries&&cookDays) add('food','Groceries × '+cookDays+' days',FOOD.groceries*cookDays*m);
+    if(S.food.nice) add('food',S.food.nice+' nice dinner'+(S.food.nice>1?'s':''),FOOD.nice*S.food.nice*m);
+    if(S.food.street) add('food',S.food.street+' street-food night'+(S.food.street>1?'s':''),FOOD.street*S.food.street*m);
+    if(S.food.lunches) add('food',S.food.lunches+' lunch'+(S.food.lunches>1?'es':'')+' out',FOOD.lunches*S.food.lunches*m);
+    if(S.food.treats&&cookDays) add('food','Coffee and treats × '+cookDays+' days',FOOD.treats*cookDays*m);
+    if(S.food.gf) add('food',"Laura's gluten-free food from home",FOOD.gf);
+    if(aiNights&&(S.food.nice+S.food.street+S.food.lunches)>(nights-aiNights)*2) out.warn.push('You have meals out planned on all-inclusive nights. Trim them to avoid paying twice.');
+
+    // Activities
+    ACTS.forEach(function(a){ if(S.acts[a.k]) add('acts',a.label,a.fn(g)); });
+
+    // Other
+    if(S.insurance){ add('other','Travel medical and trip-interruption insurance',300); if(g) add('other',"Grandma's insurance (senior rate)",350); }
+    if(S.phone==='plan') add('other','One month of a Canada–US–Mexico phone plan',40);
+    if(S.phone==='roam1') add('other','Roaming on 1 phone × '+nights+' days',18*nights);
+    if(S.phone==='roam2') add('other','Roaming on 2 phones × '+nights+' days',36*nights);
+    if(S.tips) add('other','Tips: housekeeping, drivers, porters',40+nights*6);
+    if(S.passport) add('other',"Baby's Canadian passport",57);
+    if(S.buffer) add('other','Buffer for surprises',S.buffer);
+
+    GROUPS.forEach(function(x){ var G=out.groups[x[0]]; G.on=!!S.groups[x[0]]; if(G.on) out.total+=G.sum; });
+    if(!S.groups.flights) out.points=0;
+    return out;
+  }
+
+  /* ---------- Budget UI ---------- */
+  function buildBudgetControls(){
+    var fs=$('#bFlights');
+    FLIGHTS.forEach(function(f){
+      var l=document.createElement('label');l.className='opt'+(f.avoid?' avoid-opt':'');
+      l.innerHTML='<input type="radio" name="flight" value="'+f.id+'"><span><span class="ot">'+esc(f.label)+'</span><span class="od">'+esc(f.desc)+(f.live?'':' · estimate')+'</span></span><span class="op">'+fmt(f.cad)+(f.points?' + '+(f.points/1000)+'K pts':'')+'</span>';
+      fs.appendChild(l);
+    });
+    var nl=document.createElement('label');nl.className='opt';
+    nl.innerHTML='<input type="radio" name="flight" value=""><span><span class="ot">No flight</span><span class="od">Already booked, or leave it out</span></span><span class="op">$0</span>';
+    fs.appendChild(nl);
+    fs.addEventListener('change',function(e){if(e.target.name==='flight'){S.flight=e.target.value;update();}});
+
+    var sel=$('#bStay'), rsel=$('#bResort');
+    sel.innerHTML='<option value="">No stay (leave it out)</option>';
+    Object.keys(DEST).forEach(function(d){
+      var og=document.createElement('optgroup');og.label=DEST[d];
+      STAYS.filter(function(s){return s.d===d}).forEach(function(s){var o=document.createElement('option');o.value=s.id;o.textContent=s.name+' · '+fmt(s.n)+'/night';og.appendChild(o);});
+      sel.appendChild(og);
+    });
+    STAYS.filter(function(s){return s.resort}).forEach(function(s){var o=document.createElement('option');o.value=s.id;o.textContent=s.name+' · '+fmt(s.n)+'/night';rsel.appendChild(o);});
+
+    var bb=$('#bBaby');
+    BABY.forEach(function(b){var l=document.createElement('label');l.className='tg';
+      l.innerHTML='<input type="checkbox" data-bind="baby.'+b.k+'"><span>'+esc(b.label)+'</span><span class="amt">'+fmt(b.mxn*MXN)+'/night</span>';bb.appendChild(l);});
+    var ba=$('#bActs');
+    ACTS.forEach(function(a){var l=document.createElement('label');l.className='tg';
+      l.innerHTML='<input type="checkbox" data-bind="acts.'+a.k+'"><span>'+esc(a.label)+'</span><span class="amt" data-act="'+a.k+'"></span>';ba.appendChild(l);});
+
+    var B=$('#budget');
+    B.addEventListener('change',function(e){var t=e.target,p=t.getAttribute('data-bind');if(!p)return;
+      set(p,t.type==='checkbox'?t.checked:t.value);update();});
+    B.addEventListener('click',function(e){
+      var st=e.target.closest('[data-step]');
+      if(st){var a=st.getAttribute('data-step').split(':'),v=get(a[0])+(+a[1]);
+        var max={bags:8,resortNights:4,carDays:10,'food.nice':10,'food.street':10,'food.lunches':10}[a[0]]||10;
+        set(a[0],Math.max(a[0]==='carDays'?1:0,Math.min(max,v)));update();return;}
+      var sb=e.target.closest('[data-seg] button');
+      if(sb){var p=sb.parentNode.getAttribute('data-seg'),v=sb.getAttribute('data-v');set(p,/^\d+$/.test(v)?+v:v);update();}
+    });
+    $('#bCeiling').addEventListener('input',function(e){S.ceiling=Math.max(0,+e.target.value||0);update(true);});
+    $('#bReset').addEventListener('click',function(){S=clone(DEFAULTS);update();toast('Back to the recommended plan');});
+    $('#bNone').addEventListener('click',function(){Object.keys(S.groups).forEach(function(k){S.groups[k]=false});update();toast('Everything switched off. Turn on what you want.');});
+  }
+
+  function syncControls(){
+    $$('#budget [data-bind]').forEach(function(el){var v=get(el.getAttribute('data-bind'));
+      if(el.type==='checkbox')el.checked=!!v;else if(document.activeElement!==el)el.value=v==null?'':v;});
+    $$('#bFlights input').forEach(function(r){r.checked=(r.value===(S.flight||''))});
+    $$('#budget [data-seg]').forEach(function(sg){var v=String(get(sg.getAttribute('data-seg')));
+      $$('button',sg).forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-v')===v?'true':'false')});});
+    $$('#budget [data-out]').forEach(function(o){o.textContent=get(o.getAttribute('data-out'))});
+    $$('#budget [data-show]').forEach(function(el){el.hidden=!get(el.getAttribute('data-show'))});
+    var gs=$('#budget [data-seg="grandmaSeat"]');if(gs)gs.hidden=!S.grandma;
+    $$('#budget .bg').forEach(function(g){g.classList.toggle('off',!S.groups[g.getAttribute('data-group')])});
+    $$('#bActs [data-act]').forEach(function(s){var a=ACTS.filter(function(x){return x.k===s.getAttribute('data-act')})[0];s.textContent=fmt(a.fn(S.grandma))});
+  }
+
+  function renderSummary(R){
+    $('#bTotal').textContent=fmt(R.total);
+    var bt=$('#barTotal');if(bt)bt.textContent=fmt(R.total);
+    var who=S.grandma?'5 travellers':'4 travellers';
+    $('#bSub').textContent=R.nights+' nights · '+who+(R.points?' · plus about '+Math.round(R.points/1000)+'K Aeroplan points':'');
+    var c=S.ceiling||0, pct=c?Math.min(100,100*R.total/c):0, over=c&&R.total>c;
+    var fill=$('#bCeilFill');fill.style.width=pct+'%';fill.classList.toggle('over',!!over);
+    $('#bCeilText').innerHTML=!c?'Set a ceiling to compare.':over?'<span class="over-t">'+fmt(R.total-c)+' over</span> your '+fmt(c)+' ceiling.':fmt(c-R.total)+' left under your '+fmt(c)+' ceiling.';
+    var stack=$('#bStack'),leg=$('#bLegend');stack.innerHTML='';leg.innerHTML='';
+    GROUPS.forEach(function(x,i){var G=R.groups[x[0]];
+      if(G.on&&G.sum>0){var s=document.createElement('span');s.style.flexGrow=G.sum;s.style.background='var(--s'+(i+1)+')';s.title=x[1]+': '+fmt(G.sum);stack.appendChild(s);}
+      var li=document.createElement('li');if(!G.on)li.className='off';
+      li.innerHTML='<span class="sw-dot" style="background:var(--s'+(i+1)+')"></span><span>'+x[1]+'</span><span class="lv">'+fmt(G.sum)+'</span>';leg.appendChild(li);
+      var sub=$('[data-sub="'+x[0]+'"]');if(sub)sub.textContent=G.on?fmt(G.sum):'Off · '+fmt(G.sum);
+    });
+    $('#bStack').setAttribute('aria-label','Budget by category: '+GROUPS.map(function(x){var G=R.groups[x[0]];return x[1]+' '+(G.on?fmt(G.sum):'off')}).join(', '));
+    var w=$('#bWarn');w.innerHTML='';R.warn.forEach(function(t){var li=document.createElement('li');li.textContent=t;w.appendChild(li)});
+    renderExplain(R);
+  }
+
+  function renderExplain(R){
+    var html='<p>The total adds every category that is switched on. Each line below shows what is in it right now.</p>';
+    GROUPS.forEach(function(x){var G=R.groups[x[0]];
+      html+='<p><strong>'+x[1]+(G.on?'':' (off, not counted)')+': '+fmt(G.sum)+'</strong><br>'+(G.lines.length?G.lines.map(function(l){return esc(l.label)+' '+fmt(l.amt)+(l.note?' <span class="muted">('+esc(l.note)+')</span>':'')}).join('<br>'):'<span class="muted">Nothing selected.</span>')+'</p>';});
+    html+='<p class="muted">Sources: flight and room prices are the Oct 12, 2026 searches (USD converted at 1.38). Bag fees are the round-trip fees Expedia showed for each airline. Transfers: about US$150 per private van trip. Car: about $75 a day including Mexico\'s mandatory liability insurance. Baby gear: Baby Vallarta\'s posted peso rates. Food: $70 a day in groceries, $260 per nice dinner, $50 per street-food night and $75 per lunch out for the family, plus 20% with Grandma. Activities: posted tour and entry prices; whale watching is about US$80 per adult and US$50 for the 4-year-old, babies free. Insurance is an estimate; Grandma\'s depends on her health. Everything is a planning number, plus or minus 15 to 20%.</p>';
+    $('#bExplain').innerHTML=html;
+  }
+
+  /* ---------- Stays filter ---------- */
+  var F={dest:'pv',price:2000,sort:'rank',br:0,rating:0,types:[],areas:[],amen:[]};
+  var AMEN=[
+    ['kitchenFull','Full kitchen',function(s){return s.k==='full'}],
+    ['kitchenAny','Kitchen or kitchenette',function(s){return s.k!=='none'}],
+    ['beach','Beachfront or 2-min walk',function(s){return s.beach<=2}],
+    ['nohwy','No highway to cross',function(s){return !s.hwy}],
+    ['heated','Heated pool',function(s){return s.heated}],
+    ['kidpool',"Shallow end or kids' pool",function(s){return s.shallow||s.kidsPool}],
+    ['kidsclub',"Kids' club",function(s){return s.kidsClub}],
+    ['elev','Elevator',function(s){return s.elev}],
+    ['ai','All-inclusive',function(s){return s.ai}],
+    ['fits5','Fits Grandma (5 people)',fits5],
+    ['live','Live price only',function(s){return s.live}]
+  ];
+  function score10(s){return s.r==null?null:(s.rs===5?s.r*2:s.r)}
+  function chipRow(el,items,arr){el.innerHTML='';items.forEach(function(it){var b=document.createElement('button');b.type='button';b.textContent=it[1];b.setAttribute('data-v',it[0]);
+    b.setAttribute('aria-pressed',arr.indexOf(it[0])>=0?'true':'false');el.appendChild(b);});}
+  function buildFilterChips(){
+    var pool=STAYS.filter(function(s){return F.dest==='all'||s.d===F.dest});
+    var types=Object.keys(TYPE).filter(function(t){return pool.some(function(s){return s.type===t})}).map(function(t){return [t,TYPE[t]]});
+    var areas=[];pool.forEach(function(s){if(areas.indexOf(s.area)<0)areas.push(s.area)});
+    F.types=F.types.filter(function(t){return types.some(function(x){return x[0]===t})});
+    F.areas=F.areas.filter(function(a){return areas.indexOf(a)>=0});
+    chipRow($('#fType'),types,F.types);chipRow($('#fArea'),areas.map(function(a){return [a,a]}),F.areas);chipRow($('#fAmen'),AMEN,F.amen);
+  }
+  function toggleIn(arr,v){var i=arr.indexOf(v);if(i>=0)arr.splice(i,1);else arr.push(v);}
+  function segSet(el,v){$$('button',el).forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-v')===String(v)?'true':'false')})}
+
+  function stayMatches(s){
+    if(F.dest!=='all'&&s.d!==F.dest)return false;
+    if(nightly(s)>F.price&&F.price<2000)return false;
+    if(s.br<F.br)return false;
+    var sc=score10(s);if(F.rating&&(sc==null||sc<F.rating))return false;
+    if(F.types.length&&F.types.indexOf(s.type)<0)return false;
+    if(F.areas.length&&F.areas.indexOf(s.area)<0)return false;
+    for(var i=0;i<F.amen.length;i++){var a=AMEN.filter(function(x){return x[0]===F.amen[i]})[0];if(a&&!a[2](s))return false;}
+    return true;
+  }
+  function renderStays(){
+    var nights=(flightById[S.flight]||{nights:7}).nights;
+    var list=STAYS.filter(stayMatches);
+    var sorters={rank:function(a,b){return (a.rank||99)-(b.rank||99)||nightly(a)-nightly(b)},price:function(a,b){return nightly(a)-nightly(b)},
+      rating:function(a,b){return (score10(b)||0)-(score10(a)||0)},beach:function(a,b){return a.beach-b.beach||nightly(a)-nightly(b)},br:function(a,b){return b.br-a.br||nightly(a)-nightly(b)}};
+    list.sort(sorters[F.sort]);
+    var box=$('#stayList');box.innerHTML='';
+    $('#fResult').textContent=list.length+' of '+STAYS.filter(function(s){return F.dest==='all'||s.d===F.dest}).length+' stays match'+(S.grandma?' · prices include Grandma where known':'');
+    var n=F.types.length+F.areas.length+F.amen.length+(F.br?1:0)+(F.rating?1:0);$('#fCount').textContent=n?String(n):'';
+    if(!list.length){box.innerHTML='<div class="empty">No stays match. <button type="button" class="linkbtn" data-clear>Clear filters</button></div>';return;}
+    list.forEach(function(s){
+      var ppn=nightly(s), picked=S.stay===s.id, sc=score10(s);
+      var chips=[];
+      chips.push(s.br?s.br+' bedroom'+(s.br>1?'s':''):'One room');
+      if(s.ba)chips.push(s.ba+' bath'+(s.ba>1?'s':''));
+      chips.push('Sleeps '+(s.sl||'?'));
+      chips.push(s.k==='full'?'Full kitchen':s.k==='kitchenette'?'Kitchenette':'No kitchen');
+      chips.push(s.beach===0?'<span class="pos">Beachfront</span>':s.beach+'-min walk to beach');
+      if(s.hwy)chips.push('<span class="neg">Crosses highway</span>');
+      if(s.heated)chips.push('<span class="pos">Heated pool</span>');
+      if(s.shallow||s.kidsPool)chips.push(s.kidsPool?"Kids' pool":'Shallow end');
+      if(s.kidsClub)chips.push("Kids' club");
+      if(s.elev)chips.push('Elevator');
+      if(s.ai)chips.push('<span class="pos">All-inclusive</span>');
+      if(sc!=null)chips.push('★ '+(s.rs===5?s.r+'/5':s.r)+(s.rc?' ('+s.rc.toLocaleString('en-CA')+')':''));
+      var el=document.createElement('article');el.className='stay'+(s.rank?' top':'')+(picked?' picked':'');
+      el.innerHTML='<div class="stay-h">'+(s.rank?'<div class="rk">'+s.rank+'</div>':'')+'<h3>'+esc(s.name)+'<span class="area">'+esc(s.area)+' · '+DEST[s.d]+' · '+TYPE[s.type]+'</span></h3></div>'+
+        '<div class="price"><b>'+fmt(ppn)+'</b><span>a night · '+fmt(ppn*nights)+' for '+nights+' nights'+(S.grandma&&s.g5==null?' · quoted for four':'')+'</span><span class="'+(s.live?'live':'est')+'">'+(s.live?'live quote':'estimate')+'</span></div>'+
+        (s.priceNote?'<div class="small muted">'+esc(s.priceNote)+'</div>':'')+
+        '<div class="meta">'+chips.map(function(c){return c.charAt(0)==='<'?c:'<span>'+c+'</span>'}).join('')+'</div>'+
+        '<details><summary>Why it\'s here, and what to watch</summary><div class="pc"><div class="pros"><h4>Why</h4><ul>'+s.why.map(function(w){return '<li>'+esc(w)+'</li>'}).join('')+'</ul></div><div class="cons"><h4>Watch</h4><ul>'+s.watch.map(function(w){return '<li>'+esc(w)+'</li>'}).join('')+'</ul></div></div></details>'+
+        '<div class="btn-row"><button type="button" class="btn'+(picked?' picked':'')+'" data-pick="'+s.id+'">'+(picked?'✓ In your budget':'Use in budget')+'</button><a class="btn ghost" href="'+esc(s.url)+'" target="_blank" rel="noopener">View listing</a></div>';
+      box.appendChild(el);
+    });
+  }
+  function bindFilters(){
+    $('#fDest').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;F.dest=b.getAttribute('data-v');segSet($('#fDest'),F.dest);buildFilterChips();renderStays();});
+    $('#fBr').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;F.br=+b.getAttribute('data-v');segSet($('#fBr'),F.br);renderStays();});
+    $('#fRating').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;F.rating=+b.getAttribute('data-v');segSet($('#fRating'),b.getAttribute('data-v'));renderStays();});
+    [['#fType','types'],['#fArea','areas'],['#fAmen','amen']].forEach(function(p){$(p[0]).addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+      toggleIn(F[p[1]],b.getAttribute('data-v'));b.setAttribute('aria-pressed',F[p[1]].indexOf(b.getAttribute('data-v'))>=0?'true':'false');renderStays();});});
+    var pr=$('#fPrice');function po(){F.price=+pr.value;$('#fPriceOut').textContent=F.price>=2000?'Any':fmt(F.price);}
+    pr.max=2000;pr.value=2000;po();pr.addEventListener('input',function(){po();renderStays();});
+    $('#fSort').addEventListener('change',function(e){F.sort=e.target.value;renderStays();});
+    function clear(){F.price=2000;pr.value=2000;po();F.br=0;F.rating=0;F.types=[];F.areas=[];F.amen=[];segSet($('#fBr'),0);segSet($('#fRating'),'0');buildFilterChips();renderStays();}
+    $('#fClear').addEventListener('click',clear);
+    $('#stayList').addEventListener('click',function(e){
+      if(e.target.closest('[data-clear]')){clear();return;}
+      var b=e.target.closest('[data-pick]');if(!b)return;var id=b.getAttribute('data-pick');
+      S.stay=(S.stay===id)?'':id; S.groups.stay=true; update();
+      toast(S.stay?byId[id].name+' is in your budget':'Stay removed from the budget');
+    });
+  }
+
+  var toastEl=$('#toast'),tt;function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toastEl.classList.remove('show')},2200);}
+
+  function update(skipCeil){
+    if(!skipCeil){var ci=$('#bCeiling');if(document.activeElement!==ci)ci.value=S.ceiling;}
+    syncControls();var R=compute();renderSummary(R);renderStays();save();
+  }
+
+  buildBudgetControls();buildFilterChips();bindFilters();update();
 })();
 </script>
 </body>
