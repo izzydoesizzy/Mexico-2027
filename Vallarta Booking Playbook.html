@@ -1,0 +1,225 @@
+<title>Vallarta Booking Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column, a dated timeline as the spine, stay picks as a compact ranked ledger. */
+:root{
+  --bg:#f5f7f6; --surface:#ffffff; --ink:#132a2e; --muted:#566b6e; --line:#d6e0df;
+  --accent:#0e7c7b; --accent-soft:#dff0ee; --hot:#b4365e; --hot-soft:#f8e3ea; --warn:#8a5a00; --warn-soft:#fbf0d9;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1a1c; --surface:#16252800; --ink:#e3eeec; --muted:#9db1b2; --line:#2a3d40;
+  --accent:#4fc3be; --accent-soft:#163a3a; --hot:#ef7fa2; --hot-soft:#3a1c27; --warn:#e8b75a; --warn-soft:#3a2e14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1a1c; --surface:#16252800; --ink:#e3eeec; --muted:#9db1b2; --line:#2a3d40;
+  --accent:#4fc3be; --accent-soft:#163a3a; --hot:#ef7fa2; --hot-soft:#3a1c27; --warn:#e8b75a; --warn-soft:#3a2e14; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+.wrap{max-width:52rem;margin:0 auto;padding-inline:20px;padding-block:40px 80px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,2.9rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.6rem;font-weight:700}
+h3{font-size:1.12rem;font-weight:500}
+p{margin:0;max-width:65ch}
+section{display:flex;flex-direction:column;gap:18px}
+.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.1rem;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.muted{color:var(--muted)}
+small,.small{font-size:.86rem}
+
+/* Verdict */
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.verdict div{background:var(--bg);padding:18px 20px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.verdict .k{font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.verdict .v{font-family:var(--display);font-size:1.35rem;font-weight:700}
+.verdict .s{font-size:.9rem;color:var(--muted)}
+
+.alert{border-left:4px solid var(--hot);background:var(--hot-soft);padding:16px 18px;border-radius:0 8px 8px 0;display:flex;flex-direction:column;gap:8px}
+.alert strong{color:var(--hot)}
+
+/* Timeline */
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tl li{display:grid;grid-template-columns:9.5rem 1fr;gap:20px;padding:16px 0;border-top:1px solid var(--line)}
+.tl li:last-child{border-bottom:1px solid var(--line)}
+.tl .when{font:500 .9rem/1.4 var(--mono);color:var(--ink)}
+.tl .when span{display:block;color:var(--muted);font-size:.78rem}
+.tl .what{display:flex;flex-direction:column;gap:6px;min-width:0}
+.tl li.now .when{color:var(--hot)}
+.chip{display:inline-block;font:500 .7rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border-radius:4px;vertical-align:2px;margin-left:6px}
+.chip.hot{background:var(--hot-soft);color:var(--hot)}
+.chip.ok{background:var(--accent-soft);color:var(--accent)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+@media (max-width:560px){.tl li{grid-template-columns:1fr;gap:6px}}
+
+/* Tables */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.93rem;min-width:34rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 .72rem/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.pick td{background:var(--accent-soft)}
+tr.bad td{color:var(--muted)}
+
+/* Stay ledger */
+.stays{display:flex;flex-direction:column;gap:0;border-top:2px solid var(--ink)}
+.stay{display:grid;grid-template-columns:2.2rem 1fr auto;gap:4px 16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.stay .rk{font:700 1.4rem/1 var(--display);color:var(--accent);grid-row:span 2}
+.stay .price{font:500 1rem/1.3 var(--mono);text-align:right;white-space:nowrap}
+.stay .price span{display:block;font-size:.75rem;color:var(--muted)}
+.stay .body{grid-column:2 / 4;display:flex;flex-direction:column;gap:6px;min-width:0}
+.stay .meta{font-size:.88rem;color:var(--muted)}
+.pros,.cons{margin:0;padding-left:1.1rem;font-size:.93rem}
+.cons li::marker{color:var(--hot)}
+.pros li::marker{color:var(--accent)}
+@media (max-width:520px){.stay{grid-template-columns:2rem 1fr}.stay .price{grid-column:2;text-align:left}.stay .body{grid-column:1 / 3}}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:24px}
+.cols > div{display:flex;flex-direction:column;gap:10px;min-width:0}
+ul.plain{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:6px}
+.foot{border-top:1px solid var(--line);padding-top:20px;font-size:.86rem;color:var(--muted);display:flex;flex-direction:column;gap:10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+  <div class="eyebrow">YYZ → PVR · February 2027 · researched Oct 12, 2026</div>
+  <h1>When to book Vallarta, and where to sleep</h1>
+  <p class="lede">For 2 adults, a 4-year-old and a lap baby, with Grandma optional. This builds on the February Sun Trip guide with live fares, live room prices, and what Canadian deal forums and airline sale history say about timing. Prices are in CAD unless marked.</p>
+</header>
+
+<section aria-labelledby="ans">
+  <h2 id="ans">The answer</h2>
+  <div class="verdict">
+    <div><span class="k">Stay</span><span class="v">Tue Feb 9 – Tue Feb 16</span><span class="s">WestJet both ways, 7:20 am out, 1:10 pm back. Uses the PA day and Family Day. Backup: Feb 2–9.</span></div>
+    <div><span class="k">Flights, book by</span><span class="v">Sun Oct 19</span><span class="s">Hard deadline Tue Dec 1. Book direct with the airline.</span></div>
+    <div><span class="k">Condo, book by</span><span class="v">Fri Oct 31</span><span class="s">Free-cancellation rate. Re-shop Jan 5–9.</span></div>
+    <div><span class="k">Base</span><span class="v">North Bucerías</span><span class="s">Itare Beach House or a new Tizate 2BR.</span></div>
+  </div>
+  <p>The previous plan said to wait for Black Friday. New evidence changes that. Two sales already cover February and close this week. A Black Friday discount only applies to the base fare, which is about a third of your ticket, so a 20% sale saves roughly $100 to $150 for the four of you. Meanwhile only 7 seats were left at the cheapest WestJet fare today, and you need 3 together. Losing that fare costs more than any sale saves.</p>
+</section>
+
+<section aria-labelledby="fares">
+  <div class="eyebrow">Live fares · Expedia · Oct 12, 2026</div>
+  <h2 id="fares">What the four of you pay to fly</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Dates (7 nights)</th><th>Airlines</th><th class="r">4 of you</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="pick"><td>Tue Feb 9 – Tue Feb 16</td><td>WestJet both ways</td><td class="r">$1,760</td><td>One booking. 7 seats left at this fare. Fewest school days missed.</td></tr>
+      <tr><td>Tue Feb 2 – Tue Feb 9</td><td>WestJet out, Flair back</td><td class="r">$1,628</td><td>Cheapest. Two bookings, two sets of bag rules.</td></tr>
+      <tr><td>Tue Feb 2 – Tue Feb 9</td><td>WestJet both ways</td><td class="r">$1,760</td><td>Same price as the 9th, one airline.</td></tr>
+      <tr><td>Tue Feb 16 – Tue Feb 23</td><td>WestJet both ways</td><td class="r">$1,710</td><td>From the Oct 12 guide snapshot.</td></tr>
+      <tr class="bad"><td>Sat Feb 13 – Sat Feb 20</td><td>Any</td><td class="r">$4,010</td><td>Family Day, Presidents' Day, Valentine's Day and the Super Bowl on one weekend.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">Lowest fare type with no bags and seats only at check-in. Add about $300 to $500 for checked bags and sitting together. Converted at 1.38 CAD per USD. About two-thirds of each fare is taxes and fees. Kayak's February average for this route is about $750 per person, so $1,760 for three seats plus a lap infant is already well below a typical February price.</p>
+</section>
+
+<section aria-labelledby="cal">
+  <div class="eyebrow">Dates and deadlines</div>
+  <h2 id="cal">Booking calendar</h2>
+  <ol class="tl">
+    <li class="now"><div class="when">Mon Oct 13<span>by 11:59 pm ET</span></div><div class="what"><h3>Check Porter's 20% sale <span class="chip hot">ends tonight</span></h3><p>20% off base fares for travel to April 24, 2027. Price YYZ→PVR and Hamilton→PVR on flyporter.com for Feb 9–16. Expect the Family Day weekend to be blacked out, as in Porter's last sale. WestJet's 20% offer ends the same night at 11:59 pm Mountain time (1:59 am Toronto time).</p></div></li>
+    <li class="now"><div class="when">Mon Oct 13 – Sun Oct 19<span>any time of day</span></div><div class="what"><h3>Buy the flights <span class="chip hot">recommended</span></h3><p>Air Canada's extra 20% off Mexico runs to Oct 19. WestJet has a winter Mexico sale with no blackout dates that includes Puerto Vallarta. Compare all three and book the best Feb 9–16 total <strong>directly with the airline</strong>.</p><p>Buy if the four of you come in at about <span class="num">$1,800</span> or less before bags. Air Canada and Porter refund any direct booking within 24 hours. WestJet does too when departure is 7 or more days away. Book, sleep on it, and cancel the next morning if the condo falls through.</p></div></li>
+    <li><div class="when">Oct 13 – Oct 31</div><div class="what"><h3>Lock the condo with free cancellation</h3><p>February is the busiest month for Vallarta rentals, and people book about 61 days ahead on average. The good 2-bedroom units in small new buildings go first. Note the free-cancellation deadline on the confirmation and in your calendar.</p></div></li>
+    <li><div class="when">by Wed Nov 4</div><div class="what"><h3>Only if you want the WestJet RBC card</h3><p>Its welcome bonus ends Nov 4. The card's yearly $399-plus-tax companion voucher can't be used on WestJet Vacations packages.</p></div></li>
+    <li><div class="when">Nov 24 – Tue Dec 1<span>Black Friday to Travel Tuesday</span></div><div class="what"><h3>Backstop deadline for flights <span class="chip warn">last call</span></h3><p>If you haven't bought by now, buy this week. Last year, normal February weeks qualified but the Family Day weekend was blacked out. Re-price what you hold; rebook only if the saving beats any change fee.</p></div></li>
+    <li><div class="when">Dec 26 – Dec 31</div><div class="what"><h3>Porter Boxing Week</h3><p>Last year it was up to 25% off base fares, with the best discounts on Tuesday to Thursday and Saturday travel. Only worth checking if you're on Porter.</p></div></li>
+    <li><div class="when">Jan 5 – Jan 9</div><div class="what"><h3>Re-shop the condo</h3><p>While free cancellation still applies, compare against new listings. Read the USF seaweed bulletin only if a Caribbean option is back on the table.</p></div></li>
+    <li><div class="when">Jan 12 – Jan 26</div><div class="what"><h3>Last-minute packages appear</h3><p>Rarely for family suites or 2-bedroom rooms. RedFlagDeals posters report good family rooms selling out. Don't plan around this.</p></div></li>
+  </ol>
+  <p class="small muted"><strong>Time of day and day of week:</strong> no reliable effect. Expedia's 2026 Canadian data names Monday as the cheapest booking day, but the US and UK editions name different days with 2 to 3% gaps, and Google says the booking day "matters little." What matters is the departure day: Tuesdays here beat Saturdays by $200 to $2,300. The only clock times that matter are sale deadlines: Porter and Air Canada end at 11:59 pm Eastern, WestJet at 11:59 pm Mountain.</p>
+</section>
+
+<section aria-labelledby="stay">
+  <div class="eyebrow">Hidden gems · live quotes for Feb 9–16, 2 adults + kids 4 and 1</div>
+  <h2 id="stay">Where to stay: clean, modern, not expensive</h2>
+  <p>North Bucerías to Tizate has the calmest small-wave beach on the bay and a cluster of new small buildings with few reviews yet. That's where the hidden gems are. Nuevo Vallarta is gentler still but dominated by big timeshare resorts.</p>
+  <div class="stays">
+    <article class="stay"><div class="rk">1</div><h3>Itare Beach House · north Bucerías</h3><div class="price">$225/night<span>$1,575 / 7 nights</span></div>
+      <div class="body"><div class="meta">1-bedroom suites with kitchenette · 9.2 from 219 reviews · cleanliness 9.4</div>
+      <ul class="pros"><li>About 50 m to Playa Los Picos with no highway to cross.</li><li>Guests repeatedly call the pool "clean, warm, relaxing."</li><li>Strongest review count of any gem here.</li></ul>
+      <ul class="cons"><li>Several reviews mention construction noise nearby. Ask for a unit facing away from it.</li><li>No 2-bedroom units. With Grandma, book two suites.</li></ul>
+      <a href="https://www.booking.com/hotel/mx/itare-beach-house.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div></article>
+
+    <article class="stay"><div class="rk">2</div><h3>Nuevo y Moderno Depto en Tizate · Bucerías/La Cruz</h3><div class="price">$315/night<span>$2,202 / 7 nights</span></div>
+      <div class="body"><div class="meta">2 bedrooms with doors, kitchenette · 9.3 from 18 reviews · beachfront</div>
+      <ul class="pros"><li>Heated rooftop infinity pool <em>with a shallow end</em>. That matters, because February water is 23 to 25°C, cool for a baby.</li><li>Reviewers praise cleanliness and modern design. Best match for "feels luxurious."</li></ul>
+      <ul class="cons"><li>Rooftop pool needs close supervision.</li><li>Small review base. Some Tizate units are sold with "no refund for any reason" terms, so book only a free-cancellation rate.</li></ul>
+      <a href="https://www.booking.com/hotel/mx/nuevo-y-moderno-depto-en-tizate.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div></article>
+
+    <article class="stay"><div class="rk">3</div><h3>Stanza Bucerías · Calle Orquídea</h3><div class="price">$220/night<span>$1,538 / 7 nights</span></div>
+      <div class="body"><div class="meta">2BR/2BA, full kitchen, elevator, pool · 9.3 from 6 reviews</div>
+      <ul class="pros"><li>New building, cheapest real 2-bedroom, sleeps 6, so it works with Grandma.</li><li>Also on Expedia as "Stanza 11" for about $190/night.</li></ul>
+      <ul class="cons"><li>12 to 15 minute walk to the beach, likely across the highway.</li><li>No shallow kids' area mentioned. Booking notes some maintenance comments. The value pick, not the beach pick.</li></ul>
+      <a href="https://www.booking.com/hotel/mx/stanza-bucerias-condos-pool-parking-near-beach.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div></article>
+
+    <article class="stay"><div class="rk">4</div><h3>Marina Banderas Suites · Nuevo Vallarta marina</h3><div class="price">~$359/night<span>room type not confirmed</span></div>
+      <div class="body"><div class="meta">Boutique hotel · 9.0 from 336 reviews · larger suites have full kitchens</div>
+      <ul class="pros"><li>Hotel service and a 2-bedroom suite of about 110 m² that sleeps up to 8. Good for Grandma.</li></ul>
+      <ul class="cons"><li>Not on the beach: about a 10-minute walk to Playa Vidanta. Limited parking.</li></ul>
+      <a href="https://www.expedia.com/.h21361325.Hotel-Information">Expedia listing</a></div></article>
+
+    <article class="stay"><div class="rk">5</div><h3>B Nayar or Alamar condos · La Cruz</h3><div class="price">$310–415/night<span>2BR to 3BR</span></div>
+      <div class="body"><div class="meta">Gated condos with beach clubs, kids' pools and kids' clubs · Airbnb ratings 4.82</div>
+      <ul class="pros"><li>The B Nayar 3BR "Villa 64" (about $414) is the best Grandma layout found.</li></ul>
+      <ul class="cons"><li>B Nayar's beach is partly rocky and its club fees are listed inconsistently. Alamar's club is across the highway, so you'd drive or shuttle there.</li></ul>
+      <a href="https://www.expedia.com/.h97771233.Hotel-Information">B Nayar Villa 64</a> · <a href="https://www.expedia.com/.h99798251.Hotel-Information">Alamar 2BR</a></div></article>
+  </div>
+
+  <div class="cols">
+    <div><h3>Worth the splurge</h3>
+      <p><strong>Velas Vallarta Suites</strong>, Marina Vallarta, all-inclusive: about <span class="num">$577/night</span> (US$4,129 for the week), 9.2 from 1,003 reviews. Every room is a suite with a kitchen, and there's a kids' pool and kids' club. For all-inclusive, this was the standout value. Rooms are slightly dated and the beach is pretty rather than great.</p>
+      <p><strong>Villa La Estancia</strong>, Flamingos: about <span class="num">$836/night</span>. Real 1 to 3 bedroom villas, kids' pool, calm beach. The luxury option if budget stretches.</p>
+    </div>
+    <div><h3>Skip these</h3>
+      <ul class="plain small">
+        <li><strong>Vidanta, Grand Bliss, Mayan Palace owner rentals:</strong> cheap at first, then mandatory guest fees ($42/day or a $299 flat fee) and hours-long timeshare pitches.</li>
+        <li><strong>Villa del Palmar Flamingos:</strong> aggressive timeshare sales.</li>
+        <li><strong>Paradise Village:</strong> fun pools, but basic rooms and a timeshare resort.</li>
+        <li><strong>Posada de Bucerías:</strong> blogs recommend it, but it's adults-only on Booking.</li>
+        <li><strong>Hotel Cielo Rojo:</strong> in San Pancho, and the family suite has no kitchen.</li>
+        <li><strong>Grand Matlali, Villa Varadero, Bel Air:</strong> mixed cleanliness scores or dated rooms.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="small muted">Booking.com may quote the cheapest unit that fits four. Open each listing and pick the exact 2-bedroom (or 1-bedroom with a door) before comparing. These properties showed no Presidents' Day surge for Feb 9–16, but confirm the total on the final screen. Before paying, send the host the message from the trip guide: closing bedroom door, crib, AC, toddler pool, every fee for all five.</p>
+</section>
+
+<section aria-labelledby="backup">
+  <div class="eyebrow">If Vallarta falls through</div>
+  <h2 id="backup">Backup destinations</h2>
+  <div class="cols">
+    <div><h3>Huatulco: best beaches, costly flights</h3>
+      <p>Santa Cruz bay is the calm, toddler-friendly beach. <strong>EOS Suites</strong> (about <span class="num">$244</span>/night, 2BR, fenced pool with a shallow end and baby gates, but only 22 reviews) and <strong>Nabani Condominios</strong> (about <span class="num">$375</span>, 9.4 from 133 reviews, a 9-minute walk to the beach) are the gems. <strong>Camino Real Zaashila's condos</strong> (about $280) put a kitchen on a private, sheltered beach. Flights are the problem: Feb 6–13 was about <span class="num">$4,500</span> for four. Lock flights first there.</p>
+    </div>
+    <div><h3>Los Cabos: stay on Médano only</h3>
+      <p>The San José del Cabo hotel-zone beach is not swimmable. <strong>Lumina at Marea</strong> (about <span class="num">$304</span>, 2BR, 9.5, a 6-minute walk to Médano; ask for a high unit away from the noisy street) and <strong>Condo Paraiso</strong> (about $326, 9.6, quieter, 12-minute walk) are the picks. Avoid Villa del Palmar and Pueblo Bonito for timeshare pressure. Whale-watching catamarans run about US$75 to $130 per person.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="tax">
+  <div class="eyebrow">HST, fees and protection</div>
+  <h2 id="tax">The fine print that moves the total</h2>
+  <ul class="plain">
+    <li><strong>HST:</strong> flights to Mexico are zero-rated, so no 13% HST. In a package, the Mexican hotel and tours aren't taxed either. Only Canadian pieces (some agency service fees, domestic legs) can carry HST. You save almost nothing on tax by choosing one route over the other.</li>
+    <li><strong>TICO protection</strong> only applies if you book through an Ontario-registered agency or tour operator, and it repays what you paid, not replacement travel. Booking flights direct with the airline gets the 24-hour refund but no TICO coverage.</li>
+    <li><strong>Mexico's non-resident fee</strong> (in the airfare) is 983 pesos now. The 2027 budget proposes 1,334.80, with votes due by Oct 31. Buying in 2026 <em>might</em> lock the old rate. That's about $25 per paid seat and unconfirmed, so don't let it drive the timing.</li>
+    <li><strong>Price-drop guarantees are mostly gone:</strong> Sunwing ended its guarantee in 2024 and WestJet Vacations has none. Air Canada Vacations has one only with its $99-per-person CareFree add-on, capped at $200 per person, and you must claim it by phone. This is another reason to book flights and condo separately.</li>
+    <li><strong>Porter tip:</strong> Costco sells $500 Porter e-gift cards for $449.99, and they stack with Porter sales. Paying with a gift card can void your credit card's travel insurance, so buy insurance separately.</li>
+  </ul>
+</section>
+
+<footer class="foot">
+  <p><strong>How this was researched.</strong> Live fares and room prices came from Expedia and Booking.com searches on Oct 12, 2026. Sale terms, fare-timing studies and forum reports came from web searches of RedFlagDeals threads, Jack's Flight Club, Flytrippers, Google Flights, Kayak, airline sites and Tripadvisor. Reddit, and the full text of RedFlagDeals and Tripadvisor threads, couldn't be opened from this environment, so forum points are based on search summaries rather than full threads. Prices are snapshots; confirm on the final booking screen.</p>
+  <p>Key sources: <a href="https://www.flyporter.com/en-ca/">Porter sale</a> · <a href="https://www.aircanada.com/en-ca/">Air Canada sale</a> · <a href="https://www.rustourismnews.com/2026/09/24/westjet-launches-winter-mexico-sale-with-no-blackout-dates/">WestJet Mexico sale</a> · <a href="https://forums.redflagdeals.com/air-canada-air-canada-20-off-canada-u-s-mexico-caribbean-2791856/">RFD: Air Canada Black Friday blackouts</a> · <a href="https://forums.redflagdeals.com/porter-airlines-porter-airlines-boxing-week-sale-up-25-off-base-fares-2795852/">RFD: Porter Boxing Week</a> · <a href="https://flytrippers.com/black-friday-airline-sales-canada/">Flytrippers on Black Friday</a> · <a href="https://9to5google.com/2026/10/05/google-flights-cheap-times/">Google Flights 2026 timing</a> · <a href="https://www.airroi.com/report/world/mexico/jalisco/puerto-vallarta">AirROI rental demand</a> · <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-071/ontario-british-columbia-transition-harmonized-sales-tax-tour-packages.html">CRA on HST and tour packages</a> · <a href="https://tico.ca/consumers/standard-claim.html">TICO</a></p>
+</footer>
+</div>
