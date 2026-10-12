@@ -4,420 +4,700 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="When to book flights and a condo for a February 2027 family trip from Toronto to Puerto Vallarta, with stays, a food plan and a pre-trip checklist.">
+<meta name="theme-color" content="#f3f6f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e181a" media="(prefers-color-scheme: dark)">
 <title>Vallarta Booking Playbook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: one reading column, a dated timeline as the spine, stay picks as a compact ranked ledger. */
+/* Layout: a sticky top bar, a section nav that sits as a left rail on desktop and a thumb bar on phones,
+   and one reading column where every section opens with its bottom line before the detail. */
 :root{
-  --bg:#f5f7f6; --surface:#ffffff; --ink:#132a2e; --muted:#566b6e; --line:#d6e0df;
-  --accent:#0e7c7b; --accent-soft:#dff0ee; --hot:#b4365e; --hot-soft:#f8e3ea; --warn:#8a5a00; --warn-soft:#fbf0d9;
-  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --bg:#f3f6f5; --surface:#ffffff; --surface-2:#e8efee; --ink:#13262a; --muted:#5b6f72; --line:#d3dedc;
+  --accent:#0f7b7a; --accent-ink:#ffffff; --accent-soft:#dcefed;
+  --hot:#b23460; --hot-soft:#f9e2ea; --warn:#8a5a00; --warn-soft:#fbefd6; --ok:#2f7d32; --ok-soft:#e1f1e2;
+  --shadow:0 1px 2px rgba(19,38,42,.05),0 10px 28px -14px rgba(19,38,42,.22);
+  --radius:14px; --nav-h:58px; --bar-h:56px;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0f1a1c; --surface:#16252800; --ink:#e3eeec; --muted:#9db1b2; --line:#2a3d40;
-  --accent:#4fc3be; --accent-soft:#163a3a; --hot:#ef7fa2; --hot-soft:#3a1c27; --warn:#e8b75a; --warn-soft:#3a2e14; color-scheme:dark}}
+  --bg:#0e181a; --surface:#152325; --surface-2:#1b2c2f; --ink:#e4eeec; --muted:#9bb0b2; --line:#263c3f;
+  --accent:#4cc4bf; --accent-ink:#06211f; --accent-soft:#143836;
+  --hot:#f083a6; --hot-soft:#3a1b27; --warn:#e9b95b; --warn-soft:#382c13; --ok:#7fd283; --ok-soft:#173a1a;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0f1a1c; --surface:#16252800; --ink:#e3eeec; --muted:#9db1b2; --line:#2a3d40;
-  --accent:#4fc3be; --accent-soft:#163a3a; --hot:#ef7fa2; --hot-soft:#3a1c27; --warn:#e8b75a; --warn-soft:#3a2e14; color-scheme:dark}
+  --bg:#0e181a; --surface:#152325; --surface-2:#1b2c2f; --ink:#e4eeec; --muted:#9bb0b2; --line:#263c3f;
+  --accent:#4cc4bf; --accent-ink:#06211f; --accent-soft:#143836;
+  --hot:#f083a6; --hot-soft:#3a1b27; --warn:#e9b95b; --warn-soft:#382c13; --ok:#7fd283; --ok-soft:#173a1a;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark}
+
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);padding-top:env(safe-area-inset-top,0px)}
 img{max-width:100%}
 [hidden]{display:none!important}
-.wrap{max-width:52rem;margin:0 auto;padding-inline:20px;padding-block:40px 80px;display:flex;flex-direction:column;gap:56px}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
-h1{font-size:clamp(2rem,5vw,2.9rem);font-weight:700;letter-spacing:-.01em}
-h2{font-size:1.6rem;font-weight:700}
-h3{font-size:1.12rem;font-weight:500}
-p{margin:0;max-width:65ch}
-section{display:flex;flex-direction:column;gap:18px}
-.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.lede{font-size:1.1rem;color:var(--muted)}
-.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500}
+h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;line-height:1.12;margin:0}
+h1{font-size:clamp(1.9rem,5.2vw,2.8rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:clamp(1.45rem,3.2vw,1.8rem);font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+h4{font-size:.95rem;font-weight:700}
+p{margin:0;max-width:66ch}
 a{color:var(--accent)}
-a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500}
 .muted{color:var(--muted)}
-small,.small{font-size:.86rem}
+.small{font-size:.875rem}
+.eyebrow{font:500 .72rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+ul.plain{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:8px}
+ul.plain li{max-width:66ch}
+strong{font-weight:600}
 
-/* Verdict */
-.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.verdict div{background:var(--bg);padding:18px 20px;display:flex;flex-direction:column;gap:6px;min-width:0}
-.verdict .k{font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.verdict .v{font-family:var(--display);font-size:1.35rem;font-weight:700}
-.verdict .s{font-size:.9rem;color:var(--muted)}
+/* Top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:76rem;margin:0 auto;padding-inline:16px;min-height:var(--bar-h);display:flex;align-items:center;gap:12px}
+.brand{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px;min-width:0}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex:none}
+.brand span.t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand .t-long{display:none}
+@media (min-width:600px){.brand .t-long{display:inline}.brand .t-short{display:none}}
+.bar-actions{margin-left:auto;display:flex;gap:6px;align-items:center}
+.ibtn{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:40px;height:40px;padding:0 12px;border-radius:999px;font:500 .85rem/1 var(--body);display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.ibtn:hover{background:var(--surface-2)}
+.ibtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ibtn .lbl{display:none}
+@media (min-width:600px){.ibtn .lbl{display:inline}}
 
-.alert{border-left:4px solid var(--hot);background:var(--hot-soft);padding:16px 18px;border-radius:0 8px 8px 0;display:flex;flex-direction:column;gap:8px}
-.alert strong{color:var(--hot)}
+/* Page grid */
+.page{max-width:76rem;margin:0 auto;padding-inline:16px;padding-block:20px calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 32px);display:grid;grid-template-columns:1fr;gap:24px}
+.content{min-width:0;display:flex;flex-direction:column;gap:20px}
+@media (min-width:1000px){
+  .page{grid-template-columns:15rem minmax(0,1fr);gap:40px;padding-block:28px 80px}
+  .rail{position:sticky;top:calc(var(--bar-h) + env(safe-area-inset-top,0px) + 20px);align-self:start}
+}
 
-/* Timeline */
-.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.tl li{display:grid;grid-template-columns:9.5rem 1fr;gap:20px;padding:16px 0;border-top:1px solid var(--line)}
-.tl li:last-child{border-bottom:1px solid var(--line)}
-.tl .when{font:500 .9rem/1.4 var(--mono);color:var(--ink)}
-.tl .when span{display:block;color:var(--muted);font-size:.78rem}
-.tl .what{display:flex;flex-direction:column;gap:6px;min-width:0}
-.tl li.now .when{color:var(--hot)}
-.chip{display:inline-block;font:500 .7rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border-radius:4px;vertical-align:2px;margin-left:6px}
+/* Section nav: left rail on desktop, bottom thumb bar on phones */
+.nav{display:flex;gap:4px}
+.nav a{text-decoration:none;color:var(--muted);font:500 .85rem/1.2 var(--body);padding:10px 12px;border-radius:10px;white-space:nowrap;display:flex;align-items:center;gap:8px;min-height:40px}
+.nav a .ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.nav a:hover{background:var(--surface-2);color:var(--ink)}
+.nav a.active{background:var(--accent-soft);color:var(--accent)}
+@media (min-width:1000px){
+  .nav{flex-direction:column}
+  .rail .rail-title{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 12px 10px}
+}
+@media (max-width:999px){
+  .rail{position:fixed;left:0;right:0;bottom:0;z-index:40;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px))}
+  .rail .rail-title{display:none}
+  .nav{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{scroll-snap-align:center;flex:none;flex-direction:column;gap:3px;font-size:.68rem;padding:6px 10px;min-width:62px;min-height:44px;justify-content:center}
+  .nav a .ic{width:20px;height:20px}
+}
+
+/* Sections */
+.sec{scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top,0px) + 12px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;display:flex;flex-direction:column;gap:18px;box-shadow:var(--shadow)}
+@media (min-width:600px){.sec{padding:28px 26px}}
+.sec-h{display:flex;flex-direction:column;gap:8px}
+.bl{font-size:1.02rem;color:var(--ink);padding:12px 14px;border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;max-width:none}
+
+/* Hero */
+.hero{display:flex;flex-direction:column;gap:14px;padding-block:6px 4px}
+.hero .lede{color:var(--muted);font-size:1.02rem}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;font:500 .72rem/1 var(--mono);letter-spacing:.04em;padding:7px 10px;border-radius:999px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.verdict{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:560px){.verdict{grid-template-columns:1fr 1fr}}
+.vcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);position:relative;min-width:0}
+.vcard .k{font:500 .7rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.vcard .v{font-family:var(--display);font-size:1.45rem;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.vcard .s{font-size:.9rem;color:var(--muted)}
+.cd{align-self:flex-start;margin-top:4px;font:500 .72rem/1 var(--mono);padding:6px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.cd.soon{background:var(--hot-soft);color:var(--hot);border-color:transparent}
+.cd.today{background:var(--hot);color:#fff;border-color:transparent}
+.cd.ok{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.cd.past{text-decoration:line-through}
+
+/* Up next strip */
+.upnext{display:flex;flex-direction:column;gap:10px}
+.upnext-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.upnext-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:10px}
+.up{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
+.up:hover{border-color:var(--accent)}
+.up .d{font:500 .74rem/1.3 var(--mono);color:var(--hot)}
+.up .t{font-weight:600;font-size:.92rem;line-height:1.35}
+
+/* Chips */
+.chip{display:inline-block;font:500 .66rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:6px;vertical-align:2px;margin-left:6px;white-space:nowrap}
 .chip.hot{background:var(--hot-soft);color:var(--hot)}
 .chip.ok{background:var(--accent-soft);color:var(--accent)}
 .chip.warn{background:var(--warn-soft);color:var(--warn)}
-@media (max-width:560px){.tl li{grid-template-columns:1fr;gap:6px}}
 
-/* Tables */
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
-table{border-collapse:collapse;width:100%;font-size:.93rem;min-width:34rem}
-th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font:500 .72rem/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+/* Tables that become cards on phones */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 .7rem/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface-2)}
 tr:last-child td{border-bottom:0}
 td.r,th.r{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
 tr.pick td{background:var(--accent-soft)}
 tr.bad td{color:var(--muted)}
+@media (max-width:640px){
+  .tw{overflow:visible;border:0;background:transparent}
+  table,tbody,tr,td{display:block}
+  thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  tr{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 0;margin-bottom:10px}
+  tr.pick{border-color:var(--accent);box-shadow:inset 4px 0 0 var(--accent)}
+  tr.pick td{background:transparent}
+  tr.bad{opacity:.75}
+  td{border:0;padding:6px 14px;display:grid;grid-template-columns:6.2rem 1fr;gap:10px;text-align:left!important;white-space:normal!important}
+  td::before{content:attr(data-label);font:500 .66rem/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  td.r{font-family:var(--mono)}
+  td:first-child{font-weight:600}
+}
 
-/* Stay ledger */
-.stays{display:flex;flex-direction:column;gap:0;border-top:2px solid var(--ink)}
-.stay{display:grid;grid-template-columns:2.2rem 1fr auto;gap:4px 16px;padding:18px 0;border-bottom:1px solid var(--line)}
-.stay .rk{font:700 1.4rem/1 var(--display);color:var(--accent);grid-row:span 2}
-.stay .price{font:500 1rem/1.3 var(--mono);text-align:right;white-space:nowrap}
-.stay .price span{display:block;font-size:.75rem;color:var(--muted)}
-.stay .body{grid-column:2 / 4;display:flex;flex-direction:column;gap:6px;min-width:0}
-.stay .meta{font-size:.88rem;color:var(--muted)}
-.pros,.cons{margin:0;padding-left:1.1rem;font-size:.93rem}
-.cons li::marker{color:var(--hot)}
-.pros li::marker{color:var(--accent)}
-@media (max-width:520px){.stay{grid-template-columns:2rem 1fr}.stay .price{grid-column:2;text-align:left}.stay .body{grid-column:1 / 3}}
+/* Timeline */
+.tl{list-style:none;margin:0;padding:0;position:relative;display:flex;flex-direction:column;gap:4px}
+.tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.tl li{position:relative;padding:12px 0 12px 30px;display:grid;grid-template-columns:1fr;gap:6px}
+.tl li::before{content:"";position:absolute;left:0;top:18px;width:16px;height:16px;border-radius:50%;background:var(--surface);border:3px solid var(--line)}
+.tl li.now::before{border-color:var(--hot);background:var(--hot)}
+.tl li.past{opacity:.55}
+.tl li.past::before{border-color:var(--accent);background:var(--accent)}
+.tl .when{font:500 .8rem/1.4 var(--mono);color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.tl .when b{color:var(--ink);font-weight:500}
+.tl li.now .when b{color:var(--hot)}
+.tl .what{display:flex;flex-direction:column;gap:6px;min-width:0}
+@media (min-width:700px){
+  .tl li{grid-template-columns:11rem 1fr;gap:20px}
+  .tl .when{flex-direction:column;gap:2px}
+}
 
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:24px}
+/* Stays */
+.stays{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:760px){.stays{grid-template-columns:1fr 1fr}}
+.stay{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.stay.top{border-color:var(--accent)}
+.stay-h{display:flex;gap:12px;align-items:flex-start}
+.rk{flex:none;width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font:700 .95rem/32px var(--display);text-align:center}
+.stay-h h3{font-size:1.05rem;flex:1;min-width:0}
+.stay-h .area{display:block;font:400 .85rem/1.4 var(--body);color:var(--muted)}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price b{font:700 1.3rem/1 var(--display)}
+.price span{font-size:.82rem;color:var(--muted)}
+.stay .meta{font-size:.85rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px}
+.stay .meta span{background:var(--surface-2);padding:3px 8px;border-radius:6px}
+.pc{display:grid;grid-template-columns:1fr;gap:8px}
+@media (min-width:520px) and (max-width:759px), (min-width:1100px){.pc{grid-template-columns:1fr 1fr}}
+.pc ul{margin:0;padding-left:1.1rem;font-size:.9rem;display:flex;flex-direction:column;gap:4px}
+.pc h4{font:500 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.pros h4{color:var(--ok)} .cons h4{color:var(--hot)}
+.pros li::marker{color:var(--ok)} .cons li::marker{color:var(--hot)}
+.btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:600 .92rem/1 var(--body);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:hover{filter:brightness(1.05)}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.btn-row .btn{flex:1 1 auto}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:18px}
 .cols > div{display:flex;flex-direction:column;gap:10px;min-width:0}
-ul.plain{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:6px}
-.toc{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.9rem}
-.toc a{text-decoration:none;border-bottom:1px solid var(--line)}
-.callout{border-left:4px solid var(--accent);background:var(--accent-soft);padding:14px 18px;border-radius:0 8px 8px 0;display:flex;flex-direction:column;gap:8px}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);padding:14px 16px;border-radius:0 10px 10px 0;display:flex;flex-direction:column;gap:8px}
 .callout.warn{border-left-color:var(--warn);background:var(--warn-soft)}
-.phrases{border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.callout p{max-width:none}
+.yes li::marker{color:var(--ok)} .no li::marker{color:var(--hot)}
+
+details{border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+details summary{cursor:pointer;padding:12px 14px;font-weight:600;list-style:none;display:flex;align-items:center;gap:10px;min-height:44px}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s;flex:none;margin-left:2px}
+details[open] summary::before{transform:rotate(45deg)}
+details > :not(summary){padding:0 14px 14px}
+
+/* Dining card */
+.phrases{border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;background:var(--surface)}
 .phrases ol{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:10px}
 .phrases .es{font-weight:600;display:block}
-.phrases .en{color:var(--muted);font-size:.88rem}
-.btn{align-self:flex-start;font:500 .85rem/1 var(--body);padding:9px 14px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
-.btn:hover{background:var(--accent-soft)}
-.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.yes li::marker{color:var(--accent)}
-.no li::marker{color:var(--hot)}
-.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.check li{display:grid;grid-template-columns:1.4rem 1fr;gap:8px;align-items:start}
-.check input{margin-top:5px;width:16px;height:16px;accent-color:var(--accent)}
-.check label{min-width:0}
-.foot{border-top:1px solid var(--line);padding-top:20px;font-size:.86rem;color:var(--muted);display:flex;flex-direction:column;gap:10px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.phrases .en{color:var(--muted);font-size:.86rem}
+.sheet{position:fixed;inset:0;z-index:60;background:var(--bg);color:var(--ink);overflow:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 20px calc(24px + env(safe-area-inset-bottom,0px))}
+.sheet-in{max-width:40rem;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.sheet .close{align-self:flex-end}
+.sheet ol{margin:0;padding-left:1.4rem;display:flex;flex-direction:column;gap:18px;font:600 clamp(1.25rem,4.5vw,1.7rem)/1.35 var(--body)}
+
+/* Checklist */
+.progress{display:flex;flex-direction:column;gap:6px}
+.progress .pbar{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.progress .pfill{height:100%;background:var(--accent);width:0;transition:width .25s}
+.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.check li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;padding:10px 10px;border-radius:10px;min-height:48px}
+.check li:hover{background:var(--surface-2)}
+.check input{margin:4px 0 0;width:22px;height:22px;accent-color:var(--accent)}
+.check label{min-width:0;cursor:pointer}
+.check input:checked + label{opacity:.55}
+
+.foot{font-size:.86rem;color:var(--muted);display:flex;flex-direction:column;gap:10px;padding:8px 4px 0}
+.foot p{max-width:none}
+.totop{position:fixed;right:16px;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 14px);z-index:39;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:var(--shadow)}
+.totop.show{opacity:1;pointer-events:auto}
+@media (min-width:1000px){.totop{bottom:24px}}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 14px);z-index:50;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:10px;font-size:.9rem;opacity:0;transition:opacity .2s;pointer-events:none;max-width:calc(100vw - 32px)}
+.toast.show{opacity:1}
+@media (min-width:1000px){.toast{bottom:24px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 
-<div class="wrap">
-
-<header style="display:flex;flex-direction:column;gap:14px">
-  <div class="eyebrow">YYZ → PVR · February 2027 · researched Oct 12, 2026</div>
-  <h1>When to book Vallarta, and where to sleep</h1>
-  <p class="lede">For 2 adults, a 4-year-old and a lap baby, with Grandma optional. This builds on the February Sun Trip guide with live fares, live room prices, and what Canadian deal forums and airline sale history say about timing. Prices are in CAD unless marked.</p>
-  <nav class="toc" aria-label="Contents"><a href="#ans">The answer</a><a href="#fares">Fares</a><a href="#cal">Calendar</a><a href="#points">Aeroplan points</a><a href="#stay">Where to stay</a><a href="#food">Food plan</a><a href="#missing">Still to sort</a><a href="#backup">Backups</a><a href="#tax">Fine print</a><a href="February%20Sun%20Trip%202027.html">Full trip guide →</a></nav>
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span><span class="t t-long">Vallarta Booking Playbook</span><span class="t t-short" aria-hidden="true">Vallarta 2027</span></a>
+    <div class="bar-actions">
+      <a class="ibtn" href="February%20Sun%20Trip%202027.html" title="Open the full February Sun Trip guide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span class="lbl">Full guide</span></a>
+      <button class="ibtn" id="shareBtn" type="button" title="Share this page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span class="lbl">Share</span></button>
+      <button class="ibtn" id="themeBtn" type="button" title="Switch light or dark" aria-label="Switch light or dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    </div>
+  </div>
 </header>
 
-<section aria-labelledby="ans">
-  <h2 id="ans">The answer</h2>
-  <div class="verdict">
-    <div><span class="k">Stay</span><span class="v">Tue Feb 9 – Tue Feb 16</span><span class="s">WestJet both ways, 7:20 am out, 1:10 pm back. Uses the PA day and Family Day. Backup: Feb 2–9.</span></div>
-    <div><span class="k">Flights, book by</span><span class="v">Sun Oct 19</span><span class="s">Hard deadline Tue Dec 1. Book direct with the airline.</span></div>
-    <div><span class="k">Condo, book by</span><span class="v">Fri Oct 31</span><span class="s">Free-cancellation rate. Re-shop Jan 5–9.</span></div>
-    <div><span class="k">Base</span><span class="v">North Bucerías</span><span class="s">Itare Beach House or a new Tizate 2BR.</span></div>
-  </div>
-  <p>The previous plan said to wait for Black Friday. New evidence changes that. Sales that cover February are running right now. A Black Friday discount only applies to the base fare, which is about a third of your ticket, so a 20% sale saves roughly $100 to $150 for the four of you. Meanwhile only 7 seats were left at the cheapest WestJet fare today, and you need 3 together. Losing that fare costs more than any sale saves.</p>
-</section>
+<div class="page" id="top">
+  <aside class="rail">
+    <div class="rail-title">Sections</div>
+    <nav class="nav" id="nav" aria-label="Sections">
+      <a href="#answer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Answer</a>
+      <a href="#fares"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>Fares</a>
+      <a href="#calendar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Calendar</a>
+      <a href="#points"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h4.5a1.5 1.5 0 0 1 0 3H9h5a1.5 1.5 0 0 1 0 3H9"/></svg>Points</a>
+      <a href="#stay"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Stays</a>
+      <a href="#food"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2v7a3 3 0 0 0 6 0V2M6 2v20M20 2c-2 0-4 3-4 7v3h4V2zM20 12v10"/></svg>Food</a>
+      <a href="#checklist"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Checklist</a>
+      <a href="#backup"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Backups</a>
+      <a href="#fineprint"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>Fine print</a>
+    </nav>
+  </aside>
 
-<section aria-labelledby="fares">
-  <div class="eyebrow">Live fares · Expedia · Oct 12, 2026</div>
-  <h2 id="fares">What the four of you pay to fly</h2>
-  <div class="tw"><table>
-    <thead><tr><th>Dates (7 nights)</th><th>Airlines</th><th class="r">4 of you</th><th>Notes</th></tr></thead>
-    <tbody>
-      <tr class="pick"><td>Tue Feb 9 – Tue Feb 16</td><td>WestJet both ways</td><td class="r">$1,760</td><td>One booking. 7 seats left at this fare. Fewest school days missed.</td></tr>
-      <tr><td>Tue Feb 2 – Tue Feb 9</td><td>WestJet out, Flair back</td><td class="r">$1,628</td><td>Cheapest. Two bookings, two sets of bag rules.</td></tr>
-      <tr><td>Tue Feb 2 – Tue Feb 9</td><td>WestJet both ways</td><td class="r">$1,760</td><td>Same price as the 9th, one airline.</td></tr>
-      <tr><td>Tue Feb 16 – Tue Feb 23</td><td>WestJet both ways</td><td class="r">$1,710</td><td>From the Oct 12 guide snapshot.</td></tr>
-      <tr class="bad"><td>Sat Feb 13 – Sat Feb 20</td><td>Any</td><td class="r">$4,010</td><td>Family Day, Presidents' Day, Valentine's Day and the Super Bowl on one weekend.</td></tr>
-    </tbody>
-  </table></div>
-  <p class="small muted">Lowest fare type with no bags and seats only at check-in. Add about $300 to $500 for checked bags and sitting together. Converted at 1.38 CAD per USD. About two-thirds of each fare is taxes and fees. Kayak's February average for this route is about $750 per person, so $1,760 for three seats plus a lap infant is already well below a typical February price.</p>
-</section>
+  <main class="content">
 
-<section aria-labelledby="cal">
-  <div class="eyebrow">Dates and deadlines</div>
-  <h2 id="cal">Booking calendar</h2>
-  <ol class="tl">
-    <li class="now"><div class="when">Mon Oct 13<span>by 11:59 pm ET</span></div><div class="what"><h3>Check Porter's 20% sale <span class="chip hot">ends tonight</span></h3><p>20% off base fares for travel to April 24, 2027. Price YYZ→PVR and Hamilton→PVR on flyporter.com for Feb 9–16. Expect the Family Day weekend to be blacked out, as in Porter's last sale. WestJet's 20% offer ends the same night at 11:59 pm Mountain time (1:59 am Toronto time).</p></div></li>
-    <li class="now"><div class="when">Mon Oct 13 – Sun Oct 19<span>any time of day</span></div><div class="what"><h3>Buy the flights <span class="chip hot">recommended</span></h3><p>WestJet has a winter Mexico sale with no blackout dates that includes Puerto Vallarta. Air Canada's homepage was reported to show an extra 20% off Mexico until Oct 19, but a second check couldn't confirm it, so look on aircanada.com before counting on it. While you're there, price the same dates with Aeroplan points (see below). Book the best Feb 9–16 total <strong>directly with the airline</strong>.</p><p>Buy if the four of you come in at about <span class="num">$1,800</span> or less before bags. Air Canada and Porter refund any direct booking within 24 hours. WestJet does too when departure is 7 or more days away. Book, sleep on it, and cancel the next morning if the condo falls through.</p></div></li>
-    <li><div class="when">Oct 13 – Oct 31</div><div class="what"><h3>Lock the condo with free cancellation</h3><p>February is the busiest month for Vallarta rentals, and people book about 61 days ahead on average. The good 2-bedroom units in small new buildings go first. Note the free-cancellation deadline on the confirmation and in your calendar.</p></div></li>
-    <li><div class="when">This month</div><div class="what"><h3>Book a travel-clinic or doctor visit <span class="chip warn">health</span></h3><p>Jalisco was the centre of Mexico's 2026 measles outbreak, with cases in Bahía de Banderas, where Bucerías is. The baby's 12-month MMR needs to be done at least 2 weeks before Feb 9. Ask whether the 4-year-old can get the second dose early, as Toronto Public Health allows before travel, and check Grandma's immunity. Ask about hepatitis A too.</p></div></li>
-    <li><div class="when">by Wed Nov 4</div><div class="what"><h3>Only if you want the WestJet RBC card</h3><p>Its welcome bonus ends Nov 4. The card's yearly $399-plus-tax companion voucher can't be used on WestJet Vacations packages.</p></div></li>
-    <li><div class="when">Nov 24 – Tue Dec 1<span>Black Friday to Travel Tuesday</span></div><div class="what"><h3>Backstop deadline for flights <span class="chip warn">last call</span></h3><p>If you haven't bought by now, buy this week. Last year, normal February weeks qualified but the Family Day weekend was blacked out. Re-price what you hold; rebook only if the saving beats any change fee.</p></div></li>
-    <li><div class="when">Dec 26 – Dec 31</div><div class="what"><h3>Porter Boxing Week</h3><p>Last year it was up to 25% off base fares, with the best discounts on Tuesday to Thursday and Saturday travel. Only worth checking if you're on Porter.</p></div></li>
-    <li><div class="when">Jan 5 – Jan 9</div><div class="what"><h3>Re-shop the condo</h3><p>While free cancellation still applies, compare against new listings. Read the USF seaweed bulletin only if a Caribbean option is back on the table.</p></div></li>
-    <li><div class="when">Jan 5 – Jan 16</div><div class="what"><h3>Book the extras</h3><p>Airport van with car seats confirmed in writing, or plan to bring your own. Crib, high chair and jogging stroller from a Vallarta baby-gear rental company. Reserve the <strong>Sunday Feb 14 dinner</strong>: Valentine's Day and the Super Bowl fall on the same night. Switch one phone to a Canada–US–Mexico plan for the month.</p></div></li>
-    <li><div class="when">Jan 12 – Jan 26</div><div class="what"><h3>Last-minute packages appear</h3><p>Rarely for family suites or 2-bedroom rooms. RedFlagDeals posters report good family rooms selling out. Don't plan around this.</p></div></li>
-    <li><div class="when">Week of Feb 1</div><div class="what"><h3>Pack the food bag</h3><p>Laura's gluten-free staples and a week of the baby's formula, all sealed and shop-labelled. See the food plan.</p></div></li>
-  </ol>
-  <p class="small muted"><strong>Time of day and day of week:</strong> no reliable effect. Expedia's 2026 Canadian data names Monday as the cheapest booking day, but the US and UK editions name different days with 2 to 3% gaps, and Google says the booking day "matters little." What matters is the departure day: Tuesdays here beat Saturdays by $200 to $2,300. The only clock times that matter are sale deadlines: Porter and Air Canada end at 11:59 pm Eastern, WestJet at 11:59 pm Mountain.</p>
-</section>
-
-<section aria-labelledby="points">
-  <div class="eyebrow">70,000 Aeroplan points</div>
-  <h2 id="points">Use the points for Grandma or one leg, not the whole family</h2>
-  <p>Aeroplan prices Air Canada flights by demand, so the points price follows the cash fare. Air Canada's own site shows YYZ→PVR one-way from <span class="num">12,500 points + about $230</span> in taxes, and up to 29,000 at busy times. Three seats both ways would take about 75,000 to 120,000 points, so 70K won't cover the whole family.</p>
-  <div class="tw"><table>
-    <thead><tr><th>Option for Feb 9–16</th><th class="r">Cash</th><th>Points</th><th class="r">Value per point</th></tr></thead>
-    <tbody>
-      <tr><td>Whole family on WestJet, cash</td><td class="r">$1,760</td><td>none</td><td class="r">—</td></tr>
-      <tr><td>Whole family on Air Canada, cash (Basic)</td><td class="r">$2,500</td><td>none</td><td class="r">—</td></tr>
-      <tr><td>Air Canada outbound on points (3 seats + baby), WestJet back in cash</td><td class="r">~$880 + ~$400 taxes</td><td>~38–60K</td><td class="r">~0.8–1.2¢</td></tr>
-      <tr class="pick"><td>Grandma's seat on points, if she decides late</td><td class="r">~$230 taxes each way</td><td>~12.5–20K each way</td><td class="r">~1.5¢+</td></tr>
-    </tbody>
-  </table></div>
-  <p class="small muted">Value per point is the cash you'd otherwise pay, minus the award taxes, divided by the points. Published valuations put an Aeroplan point at about 1.4 to 1.6¢, so anything under about 1.2¢ is a poor use. The middle row assumes 12.5K to 20K per seat and about $115 in taxes per one-way seat.</p>
-  <div class="callout">
-    <p><strong>Recommendation.</strong> Pay cash for the four of you on WestJet. Save the points for Grandma. A last-minute cash seat gets expensive, while Aeroplan only charges more when the cash fare rises too. If she decides late, a one-way at 12,500 to 20,000 points beats a $500-plus cash fare.</p>
-    <p><strong>When points do win for the family:</strong> when the Air Canada one-way prices near 12,500 points <em>and</em> one of you has an Aeroplan co-branded credit card (TD, CIBC or Amex). That card gives a free first checked bag to up to 8 people on the same booking, which wipes out WestJet's bag fees. A lap infant on an Aeroplan booking costs only about $25 or 2,500 points each way, versus about $400 on an Air Canada cash ticket.</p>
-  </div>
-  <ul class="plain small">
-    <li><strong>How to check:</strong> on aircanada.com (Canadian site), tick "Book with Aeroplan points", search one-way Feb 9 and one-way Feb 16 separately, and log in as the cardholder to see member pricing.</li>
-    <li><strong>Rule of thumb:</strong> redeem only if the points per one-way seat are at most (cash one-way − taxes) ÷ 0.012. Against WestJet's ~$220 one-way, that's under about 9,000 points, which Air Canada rarely offers. Against Air Canada's ~$325 one-way, it's under about 17,500.</li>
-    <li><strong>Safety net:</strong> award bookings can be cancelled free within 24 hours. After that, expect about $100 per direction to change and about $125 to $150 per ticket to cancel.</li>
-    <li><strong>Don't buy points</strong> to top up. Even on sale they cost about 1.8¢ each, more than they're worth on this route.</li>
-  </ul>
-</section>
-
-<section aria-labelledby="stay">
-  <div class="eyebrow">Hidden gems · live quotes for Feb 9–16, 2 adults + kids 4 and 1</div>
-  <h2 id="stay">Where to stay: clean, modern, not expensive</h2>
-  <p>North Bucerías to Tizate has the calmest small-wave beach on the bay and a cluster of new small buildings with few reviews yet. That's where the hidden gems are. Nuevo Vallarta is gentler still but dominated by big timeshare resorts.</p>
-  <div class="stays">
-    <article class="stay"><div class="rk">1</div><h3>Itare Beach House · north Bucerías</h3><div class="price">$225/night<span>$1,575 / 7 nights</span></div>
-      <div class="body"><div class="meta">1-bedroom suites with kitchenette · 9.2 from 219 reviews · cleanliness 9.4</div>
-      <ul class="pros"><li>About 50 m to Playa Los Picos with no highway to cross.</li><li>Guests repeatedly call the pool "clean, warm, relaxing."</li><li>Strongest review count of any gem here.</li></ul>
-      <ul class="cons"><li>Several reviews mention construction noise nearby. Ask for a unit facing away from it.</li><li>No 2-bedroom units. With Grandma, book two suites.</li></ul>
-      <a href="https://www.booking.com/hotel/mx/itare-beach-house.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div></article>
-
-    <article class="stay"><div class="rk">2</div><h3>Nuevo y Moderno Depto en Tizate · Bucerías/La Cruz</h3><div class="price">$315/night<span>$2,202 / 7 nights</span></div>
-      <div class="body"><div class="meta">2 bedrooms with doors, kitchenette · 9.3 from 18 reviews · beachfront</div>
-      <ul class="pros"><li>Heated rooftop infinity pool <em>with a shallow end</em>. That matters, because February water is 23 to 25°C, cool for a baby.</li><li>Reviewers praise cleanliness and modern design. Best match for "feels luxurious."</li></ul>
-      <ul class="cons"><li>Rooftop pool needs close supervision.</li><li>Small review base. Some Tizate units are sold with "no refund for any reason" terms, so book only a free-cancellation rate.</li></ul>
-      <a href="https://www.booking.com/hotel/mx/nuevo-y-moderno-depto-en-tizate.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div></article>
-
-    <article class="stay"><div class="rk">3</div><h3>Stanza Bucerías · Calle Orquídea</h3><div class="price">$220/night<span>$1,538 / 7 nights</span></div>
-      <div class="body"><div class="meta">2BR/2BA, full kitchen, elevator, pool · 9.3 from 6 reviews</div>
-      <ul class="pros"><li>New building, cheapest real 2-bedroom, sleeps 6, so it works with Grandma.</li><li>Also on Expedia as "Stanza 11" for about $190/night.</li></ul>
-      <ul class="cons"><li>12 to 15 minute walk to the beach, likely across the highway.</li><li>No shallow kids' area mentioned. Booking notes some maintenance comments. The value pick, not the beach pick.</li></ul>
-      <a href="https://www.booking.com/hotel/mx/stanza-bucerias-condos-pool-parking-near-beach.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div></article>
-
-    <article class="stay"><div class="rk">4</div><h3>Marina Banderas Suites · Nuevo Vallarta marina</h3><div class="price">~$359/night<span>room type not confirmed</span></div>
-      <div class="body"><div class="meta">Boutique hotel · 9.0 from 336 reviews · larger suites have full kitchens</div>
-      <ul class="pros"><li>Hotel service and a 2-bedroom suite of about 110 m² that sleeps up to 8. Good for Grandma.</li></ul>
-      <ul class="cons"><li>Not on the beach: about a 10-minute walk to Playa Vidanta. Limited parking.</li></ul>
-      <a href="https://www.expedia.com/.h21361325.Hotel-Information">Expedia listing</a></div></article>
-
-    <article class="stay"><div class="rk">5</div><h3>B Nayar or Alamar condos · La Cruz</h3><div class="price">$310–415/night<span>2BR to 3BR</span></div>
-      <div class="body"><div class="meta">Gated condos with beach clubs, kids' pools and kids' clubs · Airbnb ratings 4.82</div>
-      <ul class="pros"><li>The B Nayar 3BR "Villa 64" (about $414) is the best Grandma layout found.</li></ul>
-      <ul class="cons"><li>B Nayar's beach is partly rocky and its club fees are listed inconsistently. Alamar's club is across the highway, so you'd drive or shuttle there.</li></ul>
-      <a href="https://www.expedia.com/.h97771233.Hotel-Information">B Nayar Villa 64</a> · <a href="https://www.expedia.com/.h99798251.Hotel-Information">Alamar 2BR</a></div></article>
-  </div>
-
-  <div class="cols">
-    <div><h3>Worth the splurge</h3>
-      <p><strong>Velas Vallarta Suites</strong>, Marina Vallarta, all-inclusive: about <span class="num">$577/night</span> (US$4,129 for the week), 9.2 from 1,003 reviews. Every room is a suite with a kitchen, and there's a kids' pool and kids' club. For all-inclusive, this was the standout value. Rooms are slightly dated and the beach is pretty rather than great.</p>
-      <p><strong>Villa La Estancia</strong>, Flamingos: about <span class="num">$836/night</span>. Real 1 to 3 bedroom villas, kids' pool, calm beach. The luxury option if budget stretches.</p>
+    <div class="hero">
+      <div class="meta-row"><span class="tag">YYZ → PVR</span><span class="tag">Feb 9–16, 2027</span><span class="tag">2 adults · 4 yo · baby · Grandma?</span><span class="tag">CAD · prices from Oct 12, 2026</span></div>
+      <h1>When to book Vallarta, and where to sleep</h1>
+      <p class="lede">Live fares, live room prices, and what Canadian deal forums and airline sale history say about timing. Every section opens with the bottom line; the detail follows.</p>
     </div>
-    <div><h3>Skip these</h3>
-      <ul class="plain small">
-        <li><strong>Vidanta, Grand Bliss, Mayan Palace owner rentals:</strong> cheap at first, then mandatory guest fees ($42/day or a $299 flat fee) and hours-long timeshare pitches.</li>
-        <li><strong>Villa del Palmar Flamingos:</strong> aggressive timeshare sales.</li>
-        <li><strong>Paradise Village:</strong> fun pools, but basic rooms and a timeshare resort.</li>
-        <li><strong>Posada de Bucerías:</strong> blogs recommend it, but it's adults-only on Booking.</li>
-        <li><strong>Hotel Cielo Rojo:</strong> in San Pancho, and the family suite has no kitchen.</li>
-        <li><strong>Grand Matlali, Villa Varadero, Bel Air:</strong> mixed cleanliness scores or dated rooms.</li>
+
+    <section class="sec" id="answer" aria-labelledby="answer-h">
+      <div class="sec-h"><span class="eyebrow">The answer</span><h2 id="answer-h">Book the flights this week, hold a condo by Halloween</h2></div>
+      <div class="verdict">
+        <div class="vcard"><span class="k">Stay</span><span class="v">Tue Feb 9 – Tue Feb 16</span><span class="s">WestJet both ways, 7:20 am out, 1:10 pm back. Uses the PA day and Family Day. Backup: Feb 2–9.</span><span class="cd" data-cd="2027-02-09" data-mode="togo"></span></div>
+        <div class="vcard"><span class="k">Flights, book by</span><span class="v">Sun Oct 19</span><span class="s">Hard deadline Tue Dec 1. Book direct with the airline.</span><span class="cd" data-cd="2026-10-19"></span></div>
+        <div class="vcard"><span class="k">Condo, book by</span><span class="v">Fri Oct 31</span><span class="s">Free-cancellation rate. Re-shop Jan 5–9.</span><span class="cd" data-cd="2026-10-31"></span></div>
+        <div class="vcard"><span class="k">Base</span><span class="v">North Bucerías</span><span class="s">Itare Beach House or a new Tizate 2-bedroom.</span><a class="cd ok" href="#stay">See the stays</a></div>
+      </div>
+      <div class="upnext" id="upnext">
+        <div class="upnext-h"><h3>Up next</h3><a class="small" href="#calendar">Full calendar</a></div>
+        <div class="upnext-list" id="upnextList"></div>
+      </div>
+      <p>The previous plan said to wait for Black Friday. New evidence changes that. Sales that cover February are running right now. A Black Friday discount only applies to the base fare, which is about a third of your ticket, so a 20% sale saves roughly $100 to $150 for the four of you. Meanwhile only 7 seats were left at the cheapest WestJet fare on Oct 12, and you need 3 together. Losing that fare costs more than any sale saves.</p>
+    </section>
+
+    <section class="sec" id="fares" aria-labelledby="fares-h">
+      <div class="sec-h"><span class="eyebrow">Live fares · Expedia · Oct 12, 2026</span><h2 id="fares-h">What the four of you pay to fly</h2>
+      <p class="bl">Tuesday departures cost $1,630 to $1,760. Leaving on Saturday, Feb 13 costs $4,010.</p></div>
+      <div class="tw"><table>
+        <thead><tr><th>Dates (7 nights)</th><th>Airlines</th><th class="r">4 of you</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr class="pick"><td data-label="Dates">Tue Feb 9 – Tue Feb 16</td><td data-label="Airlines">WestJet both ways</td><td class="r" data-label="4 of you">$1,760</td><td data-label="Notes">One booking. 7 seats left at this fare. Fewest school days missed.</td></tr>
+          <tr><td data-label="Dates">Tue Feb 2 – Tue Feb 9</td><td data-label="Airlines">WestJet out, Flair back</td><td class="r" data-label="4 of you">$1,628</td><td data-label="Notes">Cheapest. Two bookings, two sets of bag rules.</td></tr>
+          <tr><td data-label="Dates">Tue Feb 2 – Tue Feb 9</td><td data-label="Airlines">WestJet both ways</td><td class="r" data-label="4 of you">$1,760</td><td data-label="Notes">Same price as the 9th, one airline.</td></tr>
+          <tr><td data-label="Dates">Tue Feb 16 – Tue Feb 23</td><td data-label="Airlines">WestJet both ways</td><td class="r" data-label="4 of you">$1,710</td><td data-label="Notes">From the Oct 12 guide snapshot.</td></tr>
+          <tr class="bad"><td data-label="Dates">Sat Feb 13 – Sat Feb 20</td><td data-label="Airlines">Any</td><td class="r" data-label="4 of you">$4,010</td><td data-label="Notes">Family Day, Presidents' Day, Valentine's Day and the Super Bowl on one weekend.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small muted">Lowest fare type with no bags and seats only at check-in. Add about $300 to $500 for checked bags and sitting together. Converted at 1.38 CAD per USD. About two-thirds of each fare is taxes and fees. Kayak's February average for this route is about $750 per person, so $1,760 for three seats plus a lap infant is already well below a typical February price.</p>
+    </section>
+
+    <section class="sec" id="calendar" aria-labelledby="calendar-h">
+      <div class="sec-h"><span class="eyebrow">Dates and deadlines</span><h2 id="calendar-h">Booking calendar</h2>
+      <p class="bl">The day you fly matters far more than the day you click buy. Deadlines below are the only clock times that count.</p></div>
+      <ol class="tl" id="timeline">
+        <li id="t1" data-from="2026-10-13" data-to="2026-10-13"><div class="when"><b>Mon Oct 13</b><span>by 11:59 pm ET</span></div><div class="what"><h3>Check Porter's 20% sale <span class="chip hot">ends tonight</span></h3><p>20% off base fares for travel to April 24, 2027. Price YYZ→PVR and Hamilton→PVR on flyporter.com for Feb 9–16. Expect the Family Day weekend to be blacked out, as in Porter's last sale. WestJet's 20% offer ends the same night at 11:59 pm Mountain time (1:59 am Toronto time).</p></div></li>
+        <li id="t2" data-from="2026-10-13" data-to="2026-10-19"><div class="when"><b>Oct 13 – Sun Oct 19</b><span>any time of day</span></div><div class="what"><h3>Buy the flights <span class="chip hot">recommended</span></h3><p>WestJet has a winter Mexico sale with no blackout dates that includes Puerto Vallarta. Air Canada's homepage was reported to show an extra 20% off Mexico until Oct 19, but a second check couldn't confirm it, so look on aircanada.com before counting on it. While you're there, price the same dates with Aeroplan points. Book the best Feb 9–16 total <strong>directly with the airline</strong>.</p><p>Buy if the four of you come in at about <span class="num">$1,800</span> or less before bags. Air Canada and Porter refund any direct booking within 24 hours. WestJet does too when departure is 7 or more days away. Book, sleep on it, and cancel the next morning if the condo falls through.</p></div></li>
+        <li id="t3" data-from="2026-10-13" data-to="2026-10-31"><div class="when"><b>Oct 13 – Sat Oct 31</b></div><div class="what"><h3>Lock the condo with free cancellation</h3><p>February is the busiest month for Vallarta rentals, and people book about 61 days ahead on average. The good 2-bedroom units in small new buildings go first. Note the free-cancellation deadline on the confirmation and in your calendar.</p></div></li>
+        <li id="t4" data-from="2026-10-13" data-to="2026-10-31"><div class="when"><b>This month</b></div><div class="what"><h3>Book a travel-clinic or doctor visit <span class="chip warn">health</span></h3><p>Jalisco was the centre of Mexico's 2026 measles outbreak, with cases in Bahía de Banderas, where Bucerías is. The baby's 12-month MMR needs to be done at least 2 weeks before Feb 9. Ask whether the 4-year-old can get the second dose early, as Toronto Public Health allows before travel, and check Grandma's immunity. Ask about hepatitis A too.</p></div></li>
+        <li id="t5" data-from="2026-10-20" data-to="2026-11-04"><div class="when"><b>by Wed Nov 4</b></div><div class="what"><h3>Only if you want the WestJet RBC card</h3><p>Its welcome bonus ends Nov 4. The card's yearly $399-plus-tax companion voucher can't be used on WestJet Vacations packages.</p></div></li>
+        <li id="t6" data-from="2026-11-24" data-to="2026-12-01"><div class="when"><b>Nov 24 – Tue Dec 1</b><span>Black Friday to Travel Tuesday</span></div><div class="what"><h3>Backstop deadline for flights <span class="chip warn">last call</span></h3><p>If you haven't bought by now, buy this week. Last year, normal February weeks qualified but the Family Day weekend was blacked out. Re-price what you hold; rebook only if the saving beats any change fee.</p></div></li>
+        <li id="t7" data-from="2026-12-26" data-to="2026-12-31"><div class="when"><b>Dec 26 – 31</b></div><div class="what"><h3>Porter Boxing Week</h3><p>Last year it was up to 25% off base fares, with the best discounts on Tuesday to Thursday and Saturday travel. Only worth checking if you're on Porter.</p></div></li>
+        <li id="t8" data-from="2027-01-05" data-to="2027-01-09"><div class="when"><b>Jan 5 – 9</b></div><div class="what"><h3>Re-shop the condo</h3><p>While free cancellation still applies, compare against new listings. Read the USF seaweed bulletin only if a Caribbean option is back on the table.</p></div></li>
+        <li id="t9" data-from="2027-01-05" data-to="2027-01-16"><div class="when"><b>Jan 5 – 16</b></div><div class="what"><h3>Book the extras</h3><p>Airport van with car seats confirmed in writing, or plan to bring your own. Crib, high chair and jogging stroller from a Vallarta baby-gear rental company. Reserve the <strong>Sunday Feb 14 dinner</strong>: Valentine's Day and the Super Bowl fall on the same night. Switch one phone to a Canada–US–Mexico plan for the month.</p></div></li>
+        <li id="t10" data-from="2027-01-12" data-to="2027-01-26"><div class="when"><b>Jan 12 – 26</b></div><div class="what"><h3>Last-minute packages appear</h3><p>Rarely for family suites or 2-bedroom rooms. RedFlagDeals posters report good family rooms selling out. Don't plan around this.</p></div></li>
+        <li id="t11" data-from="2027-02-01" data-to="2027-02-08"><div class="when"><b>Week of Feb 1</b></div><div class="what"><h3>Pack the food bag</h3><p>Laura's gluten-free staples and a week of the baby's formula, all sealed and shop-labelled. See the food plan.</p></div></li>
+        <li id="t12" data-from="2027-02-09" data-to="2027-02-16"><div class="when"><b>Tue Feb 9 – Tue Feb 16</b></div><div class="what"><h3>The trip <span class="chip ok">go</span></h3><p>WestJet 2220 leaves Pearson at 7:20 am and lands at 12:05 pm. The return leaves Puerto Vallarta at 1:10 pm and lands at 7:00 pm. Bucerías is one hour behind Toronto.</p></div></li>
+      </ol>
+      <details><summary>Does the day of week or time of day matter?</summary>
+        <p class="small muted">No reliable effect. Expedia's 2026 Canadian data names Monday as the cheapest booking day, but the US and UK editions name different days with 2 to 3% gaps, and Google says the booking day "matters little." What matters is the departure day: Tuesdays here beat Saturdays by $200 to $2,300. The only clock times that matter are sale deadlines: Porter and Air Canada end at 11:59 pm Eastern, WestJet at 11:59 pm Mountain.</p>
+      </details>
+    </section>
+
+    <section class="sec" id="points" aria-labelledby="points-h">
+      <div class="sec-h"><span class="eyebrow">70,000 Aeroplan points</span><h2 id="points-h">Use the points for Grandma or one leg, not the whole family</h2>
+      <p class="bl">Against WestJet's cash fare, a point is worth about 1¢ here. Save them for Grandma, where they're worth 1.5¢ or more.</p></div>
+      <p>Aeroplan prices Air Canada flights by demand, so the points price follows the cash fare. Air Canada's own site shows YYZ→PVR one-way from <span class="num">12,500 points + about $230</span> in taxes, and up to 29,000 at busy times. Three seats both ways would take about 75,000 to 120,000 points, so 70K won't cover the whole family.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Option for Feb 9–16</th><th class="r">Cash</th><th>Points</th><th class="r">Value per point</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Option">Whole family on WestJet, cash</td><td class="r" data-label="Cash">$1,760</td><td data-label="Points">none</td><td class="r" data-label="Value per point">—</td></tr>
+          <tr><td data-label="Option">Whole family on Air Canada, cash (Basic)</td><td class="r" data-label="Cash">$2,500</td><td data-label="Points">none</td><td class="r" data-label="Value per point">—</td></tr>
+          <tr><td data-label="Option">Air Canada outbound on points (3 seats + baby), WestJet back in cash</td><td class="r" data-label="Cash">~$880 + ~$400 taxes</td><td data-label="Points">~38–60K</td><td class="r" data-label="Value per point">~0.8–1.2¢</td></tr>
+          <tr class="pick"><td data-label="Option">Grandma's seat on points, if she decides late</td><td class="r" data-label="Cash">~$230 taxes each way</td><td data-label="Points">~12.5–20K each way</td><td class="r" data-label="Value per point">~1.5¢+</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout">
+        <p><strong>Recommendation.</strong> Pay cash for the four of you on WestJet. Save the points for Grandma. A last-minute cash seat gets expensive, while Aeroplan only charges more when the cash fare rises too. If she decides late, a one-way at 12,500 to 20,000 points beats a $500-plus cash fare.</p>
+        <p><strong>When points do win for the family:</strong> when the Air Canada one-way prices near 12,500 points <em>and</em> one of you has an Aeroplan co-branded credit card (TD, CIBC or Amex). That card gives a free first checked bag to up to 8 people on the same booking, which wipes out WestJet's bag fees. A lap infant on an Aeroplan booking costs only about $25 or 2,500 points each way, versus about $400 on an Air Canada cash ticket.</p>
+      </div>
+      <details><summary>How to check, and the rule of thumb</summary>
+        <ul class="plain small">
+          <li><strong>Value per point</strong> is the cash you'd otherwise pay, minus the award taxes, divided by the points. Published valuations put an Aeroplan point at about 1.4 to 1.6¢, so anything under about 1.2¢ is a poor use.</li>
+          <li><strong>How to check:</strong> on aircanada.com (Canadian site), tick "Book with Aeroplan points", search one-way Feb 9 and one-way Feb 16 separately, and log in as the cardholder to see member pricing.</li>
+          <li><strong>Rule of thumb:</strong> redeem only if the points per one-way seat are at most (cash one-way − taxes) ÷ 0.012. Against WestJet's ~$220 one-way, that's under about 9,000 points, which Air Canada rarely offers. Against Air Canada's ~$325 one-way, it's under about 17,500.</li>
+          <li><strong>Safety net:</strong> award bookings can be cancelled free within 24 hours. After that, expect about $100 per direction to change and about $125 to $150 per ticket to cancel.</li>
+          <li><strong>Don't buy points</strong> to top up. Even on sale they cost about 1.8¢ each, more than they're worth on this route.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="sec" id="stay" aria-labelledby="stay-h">
+      <div class="sec-h"><span class="eyebrow">Hidden gems · live quotes, Feb 9–16</span><h2 id="stay-h">Where to stay: clean, modern, not expensive</h2>
+      <p class="bl">North Bucerías to Tizate has the calmest small-wave beach on the bay and a cluster of new small buildings with few reviews yet. That's where the gems are.</p></div>
+      <div class="stays">
+        <article class="stay top">
+          <div class="stay-h"><div class="rk">1</div><h3>Itare Beach House<span class="area">North Bucerías · 1-bedroom suites with kitchenette</span></h3></div>
+          <div class="price"><b>$225</b><span>a night · $1,575 for 7 nights</span></div>
+          <div class="meta"><span>9.2 from 219 reviews</span><span>Cleanliness 9.4</span><span>50 m to the beach</span></div>
+          <div class="pc">
+            <div class="pros"><h4>Why</h4><ul><li>No highway to cross to Playa Los Picos.</li><li>Guests repeatedly call the pool "clean, warm, relaxing."</li><li>Strongest review count of any gem here.</li></ul></div>
+            <div class="cons"><h4>Watch</h4><ul><li>Several reviews mention construction noise nearby. Ask for a unit facing away from it.</li><li>No 2-bedroom units. With Grandma, book two suites.</li></ul></div>
+          </div>
+          <div class="btn-row"><a class="btn" href="https://www.booking.com/hotel/mx/itare-beach-house.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div>
+        </article>
+        <article class="stay">
+          <div class="stay-h"><div class="rk">2</div><h3>Nuevo y Moderno Depto en Tizate<span class="area">Bucerías / La Cruz · 2 bedrooms with doors, kitchenette</span></h3></div>
+          <div class="price"><b>$315</b><span>a night · $2,202 for 7 nights</span></div>
+          <div class="meta"><span>9.3 from 18 reviews</span><span>Beachfront</span><span>Heated rooftop pool</span></div>
+          <div class="pc">
+            <div class="pros"><h4>Why</h4><ul><li>Infinity pool <em>with a shallow end</em>. February water is 23 to 25°C, cool for a baby, so a heated pool matters.</li><li>Reviewers praise cleanliness and modern design. Best match for "feels luxurious."</li></ul></div>
+            <div class="cons"><h4>Watch</h4><ul><li>Rooftop pool needs close supervision.</li><li>Small review base. Some Tizate units are sold with "no refund for any reason" terms, so book only a free-cancellation rate.</li></ul></div>
+          </div>
+          <div class="btn-row"><a class="btn" href="https://www.booking.com/hotel/mx/nuevo-y-moderno-depto-en-tizate.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div>
+        </article>
+        <article class="stay">
+          <div class="stay-h"><div class="rk">3</div><h3>Stanza Bucerías<span class="area">Calle Orquídea · 2BR/2BA, full kitchen, elevator, pool</span></h3></div>
+          <div class="price"><b>$220</b><span>a night · $1,538 for 7 nights</span></div>
+          <div class="meta"><span>9.3 from 6 reviews</span><span>Sleeps 6</span><span>New building</span></div>
+          <div class="pc">
+            <div class="pros"><h4>Why</h4><ul><li>Cheapest real 2-bedroom, and it fits Grandma.</li><li>Also on Expedia as "Stanza 11" for about $190 a night.</li></ul></div>
+            <div class="cons"><h4>Watch</h4><ul><li>12 to 15 minute walk to the beach, likely across the highway.</li><li>No shallow kids' area mentioned, and some maintenance comments. The value pick, not the beach pick.</li></ul></div>
+          </div>
+          <div class="btn-row"><a class="btn" href="https://www.booking.com/hotel/mx/stanza-bucerias-condos-pool-parking-near-beach.html?checkin=2027-02-09&checkout=2027-02-16&group_adults=2&group_children=2&age=4&age=1&selected_currency=CAD">Booking.com, Feb 9–16</a></div>
+        </article>
+        <article class="stay">
+          <div class="stay-h"><div class="rk">4</div><h3>Marina Banderas Suites<span class="area">Nuevo Vallarta marina · boutique hotel, larger suites have full kitchens</span></h3></div>
+          <div class="price"><b>~$359</b><span>a night · room type not confirmed</span></div>
+          <div class="meta"><span>9.0 from 336 reviews</span><span>Hotel service</span></div>
+          <div class="pc">
+            <div class="pros"><h4>Why</h4><ul><li>A 2-bedroom suite of about 110 m² that sleeps up to 8. Good for Grandma.</li></ul></div>
+            <div class="cons"><h4>Watch</h4><ul><li>Not on the beach: about a 10-minute walk to Playa Vidanta. Limited parking.</li></ul></div>
+          </div>
+          <div class="btn-row"><a class="btn ghost" href="https://www.expedia.com/.h21361325.Hotel-Information">Expedia listing</a></div>
+        </article>
+        <article class="stay">
+          <div class="stay-h"><div class="rk">5</div><h3>B Nayar or Alamar condos<span class="area">La Cruz · gated condos with beach clubs, kids' pools and kids' clubs</span></h3></div>
+          <div class="price"><b>$310–415</b><span>a night · 2BR to 3BR</span></div>
+          <div class="meta"><span>Airbnb 4.82</span><span>Best Grandma layout</span></div>
+          <div class="pc">
+            <div class="pros"><h4>Why</h4><ul><li>The B Nayar 3BR "Villa 64" (about $414) is the best Grandma layout found.</li></ul></div>
+            <div class="cons"><h4>Watch</h4><ul><li>B Nayar's beach is partly rocky and its club fees are listed inconsistently. Alamar's club is across the highway, so you'd drive or shuttle there.</li></ul></div>
+          </div>
+          <div class="btn-row"><a class="btn ghost" href="https://www.expedia.com/.h97771233.Hotel-Information">B Nayar Villa 64</a><a class="btn ghost" href="https://www.expedia.com/.h99798251.Hotel-Information">Alamar 2BR</a></div>
+        </article>
+      </div>
+      <div class="cols">
+        <div><h3>Worth the splurge</h3>
+          <p><strong>Velas Vallarta Suites</strong>, Marina Vallarta, all-inclusive: about <span class="num">$577/night</span> (US$4,129 for the week), 9.2 from 1,003 reviews. Every room is a suite with a kitchen, and there's a kids' pool and kids' club. For all-inclusive, this was the standout value. Rooms are slightly dated and the beach is pretty rather than great.</p>
+          <p><strong>Villa La Estancia</strong>, Flamingos: about <span class="num">$836/night</span>. Real 1 to 3 bedroom villas, kids' pool, calm beach. The luxury option if budget stretches.</p>
+        </div>
+        <div><h3>Skip these</h3>
+          <ul class="plain small">
+            <li><strong>Vidanta, Grand Bliss, Mayan Palace owner rentals:</strong> cheap at first, then mandatory guest fees ($42/day or a $299 flat fee) and hours-long timeshare pitches.</li>
+            <li><strong>Villa del Palmar Flamingos:</strong> aggressive timeshare sales.</li>
+            <li><strong>Paradise Village:</strong> fun pools, but basic rooms and a timeshare resort.</li>
+            <li><strong>Posada de Bucerías:</strong> blogs recommend it, but it's adults-only on Booking.</li>
+            <li><strong>Hotel Cielo Rojo:</strong> in San Pancho, and the family suite has no kitchen.</li>
+            <li><strong>Grand Matlali, Villa Varadero, Bel Air:</strong> mixed cleanliness scores or dated rooms.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small muted">Booking.com may quote the cheapest unit that fits four. Open each listing and pick the exact 2-bedroom (or 1-bedroom with a door) before comparing. These properties showed no Presidents' Day surge for Feb 9–16, but confirm the total on the final screen. Before paying, send the host the message from the trip guide: closing bedroom door, crib, AC, toddler pool, every fee for all five.</p>
+    </section>
+
+    <section class="sec" id="food" aria-labelledby="food-h">
+      <div class="sec-h"><span class="eyebrow">Cheap breakfasts, street food, nicer dinners</span><h2 id="food-h">Food plan, built around Laura</h2>
+      <p class="bl">Corn tortillas, ceviche and grilled fish are naturally safe. The traps are hidden: Maggi and soy sauce (wheat) in marinades, chicken stock and lard in rice and beans.</p></div>
+      <p>Laura is pescatarian and gluten-free. This plan treats her gluten-free needs as strict (coeliac-level) because that's the safe default. If a few crumbs don't bother her, the street-food list gets longer.</p>
+      <div class="cols">
+        <div><h3>Usually safe for Laura</h3>
+          <ul class="plain yes small">
+            <li>Ceviche and green aguachile on corn tostadas. Ask for no Maggi.</li>
+            <li>Whole grilled fish <em>al mojo de ajo</em> (garlic) or plain <em>a la talla</em>.</li>
+            <li>Grilled fish or shrimp tacos on 100% corn tortillas.</li>
+            <li>Shrimp cocktail. Ask about Worcestershire sauce.</li>
+            <li>Guacamole, pico de gallo, fresh salsas, fruit with chile and lime.</li>
+            <li>Whole beans <em>de la olla</em> and plain white rice, once she's confirmed no lard or chicken stock.</li>
+          </ul>
+        </div>
+        <div><h3>Avoid or ask first</h3>
+          <ul class="plain no small">
+            <li>Battered fish ("estilo Ensenada"), anything <em>empanizado</em> (breaded), and fried chips or tostadas from a shared fryer.</li>
+            <li>Black aguachile (<em>negro</em>) and micheladas: soy, Maggi and Worcestershire.</li>
+            <li>Pescado zarandeado, the local grilled-fish dish: many marinades use soy or Maggi. Ask for it without.</li>
+            <li>Red Mexican rice and fideo soup: chicken stock, and the soup has wheat noodles.</li>
+            <li>Refried beans and tamales: usually pork lard.</li>
+            <li>Mole, flour tortillas, beer.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phrases" id="phrasecard">
+        <h3>Laura's dining card</h3>
+        <ol>
+          <li><span class="es">Tengo enfermedad celíaca. No puedo comer gluten: nada de trigo, harina de trigo, cebada ni centeno. Incluso migajas me enferman.</span><span class="en">I have coeliac disease. No wheat, wheat flour, barley or rye. Even crumbs make me sick.</span></li>
+          <li><span class="es">No como carne, pollo ni cerdo. Sí como pescado y mariscos.</span><span class="en">I don't eat meat, chicken or pork. I do eat fish and seafood.</span></li>
+          <li><span class="es">Por favor, sin Maggi, sin salsa de soya y sin salsa inglesa. Solo limón, sal y chile.</span><span class="en">Please, no Maggi, soy sauce or Worcestershire. Just lime, salt and chile.</span></li>
+          <li><span class="es">¿Las tortillas son 100% de maíz? ¿Calientan las de harina en la misma plancha?</span><span class="en">Are the tortillas 100% corn? Do you heat flour tortillas on the same griddle?</span></li>
+          <li><span class="es">¿El pescado es empanizado o capeado? Lo quiero a la plancha, sin harina.</span><span class="en">Is the fish breaded or battered? I'd like it grilled, no flour.</span></li>
+          <li><span class="es">¿El arroz o los frijoles llevan caldo de pollo o manteca?</span><span class="en">Do the rice or beans have chicken stock or lard?</span></li>
+          <li><span class="es">Es por salud, no es preferencia. ¡Muchas gracias!</span><span class="en">It's for my health, not a preference. Thank you!</span></li>
+        </ol>
+        <div class="btn-row"><button class="btn" id="showCard" type="button">Show to the waiter</button><button class="btn ghost" id="copyCard" type="button">Copy the Spanish</button></div>
+      </div>
+
+      <h3>Groceries: breakfast and lunch at the condo</h3>
+      <ul class="plain">
+        <li><strong>Main shop:</strong> Mega, on the highway at the south edge of Bucerías, open 7 am to 11 pm. La Comer, across the road, has more imported and gluten-free products. Walmart, near Flamingos, is cheapest. Uber Eats delivers groceries in Bucerías if you'd rather not go out on arrival day.</li>
+        <li><strong>Fresh fish:</strong> Mercado del Mar at La Cruz marina is open daily. About 30 stalls fillet snapper, mahi-mahi and tuna to order. Go before 9 am. Two condo fish dinners cost a fraction of a restaurant.</li>
+        <li><strong>Markets:</strong> the La Cruz Sunday market (Sunday Feb 14, about 9 am to 2 pm) and the Bucerías Sunday street market for fruit, shrimp and snacks.</li>
+        <li><strong>First shop</strong> for the week, about <span class="num">$400–550</span>: milk, eggs, yogurt, two boxes of cereal, oats for the rest of you, bananas, papaya, pineapple, avocados, corn tortillas from a tortilla shop, cheese, peanut butter, juice, coffee, drinking water in big 20-litre jugs, diapers, baby pouches, and produce-washing drops (Microdyn).</li>
       </ul>
-    </div>
-  </div>
-  <p class="small muted">Booking.com may quote the cheapest unit that fits four. Open each listing and pick the exact 2-bedroom (or 1-bedroom with a door) before comparing. These properties showed no Presidents' Day surge for Feb 9–16, but confirm the total on the final screen. Before paying, send the host the message from the trip guide: closing bedroom door, crib, AC, toddler pool, every fee for all five.</p>
-</section>
+      <div class="callout warn">
+        <p><strong>Pack from home for Laura</strong>, because certified gluten-free oats weren't found in Mexican stores and "sin gluten" labels there are often unreliable: certified GF oats (1 to 1.5 kg), her usual GF cereal, GF crackers or bread, one box of GF pasta, a bottle of GF tamari to hand to a chef, and snack bars for the beach.</p>
+        <p class="small">Mexican customs allow sealed, shop-labelled, shelf-stable food. Don't bring fresh fruit, sandwiches or cheese. Bring a full week of the baby's formula too, because Mexican versions are made differently.</p>
+      </div>
 
-<section aria-labelledby="food">
-  <div class="eyebrow">Cheap breakfasts, street food, nicer dinners</div>
-  <h2 id="food">Food plan, built around Laura</h2>
-  <p>Laura is pescatarian and gluten-free. This plan treats her gluten-free needs as strict (coeliac-level) because that's the safe default. If a few crumbs don't bother her, the street-food list gets longer. The good news: the local food is corn tortillas, ceviche and grilled fish. The traps are hidden. Maggi seasoning and soy sauce (both wheat) go into ceviche marinades, and chicken stock (not pescatarian) goes into the rice and beans.</p>
+      <h3>Where to eat</h3>
+      <div class="tw"><table>
+        <thead><tr><th>Place</th><th>Type</th><th>For Laura</th><th class="r">Family cost</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Place">Mr. &amp; Mrs. Fish, Bucerías</td><td data-label="Type">Street-casual, beachside</td><td data-label="For Laura">Grilled dorado tacos, whole snapper with garlic</td><td class="r" data-label="Family cost">$40–70</td></tr>
+          <tr><td data-label="Place">El Rincón de Ensenada, Bucerías</td><td data-label="Type">Taco stand, cash only</td><td data-label="For Laura">Ceviche and tostadas only; the tacos are battered</td><td class="r" data-label="Family cost">$35–60</td></tr>
+          <tr><td data-label="Place">Mariscos Villarreal, Bucerías</td><td data-label="Type">Local seafood, big portions</td><td data-label="For Laura">Ceviche, green aguachile</td><td class="r" data-label="Family cost">$50–90</td></tr>
+          <tr><td data-label="Place">Si Señor, Bucerías</td><td data-label="Type">Beach club, kids on the sand</td><td data-label="For Laura">Grilled seafood; confirm sauces</td><td class="r" data-label="Family cost">$120–200</td></tr>
+          <tr><td data-label="Place">Karen's Place, Bucerías</td><td data-label="Type">Beachfront, GF items marked</td><td data-label="For Laura">Mixed reviews from coeliacs</td><td class="r" data-label="Family cost">$150–250</td></tr>
+          <tr class="pick"><td data-label="Place">La Peska, La Cruz marina</td><td data-label="Type">Nicer dinner, 4.7 from 1,300+ reviews</td><td data-label="For Laura">Grilled fish, ceviche; zarandeado "sin soya ni Maggi". Closed Tuesdays</td><td class="r" data-label="Family cost">$200–320</td></tr>
+          <tr><td data-label="Place">Tramonto or Il Pescatore, Nuevo Vallarta</td><td data-label="Type">Italian</td><td data-label="For Laura">GF pasta reported</td><td class="r" data-label="Family cost">$200–300</td></tr>
+          <tr class="pick"><td data-label="Place">La Bendita, Puerto Vallarta</td><td data-label="Type">Fully gluten-free kitchen</td><td data-label="For Laura">Everything. Worth one lunch on a PV day</td><td class="r" data-label="Family cost">$60–100</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small muted">Reviews and menus from 2024 to 2026; none were confirmed by phone. Street tacos run about 25 to 45 pesos ($2 to $3.60) each. Most stands take cash only. Tip 15 to 20% at sit-down restaurants, in pesos.</p>
 
-  <div class="cols">
-    <div><h3>Usually safe for Laura</h3>
-      <ul class="plain yes small">
-        <li>Ceviche and green aguachile on corn tostadas. Ask for no Maggi.</li>
-        <li>Whole grilled fish <em>al mojo de ajo</em> (garlic) or plain <em>a la talla</em>.</li>
-        <li>Grilled fish or shrimp tacos on 100% corn tortillas.</li>
-        <li>Shrimp cocktail. Ask about Worcestershire sauce.</li>
-        <li>Guacamole, pico de gallo, fresh salsas, fruit with chile and lime.</li>
-        <li>Whole beans <em>de la olla</em> and plain white rice, once she's confirmed no lard or chicken stock.</li>
+      <h3>A week that works</h3>
+      <div class="tw"><table>
+        <thead><tr><th>Day</th><th>Lunch</th><th>Dinner</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Day">Tue Feb 9</td><td data-label="Lunch">Plane snacks</td><td data-label="Dinner">Condo, after the big shop</td></tr>
+          <tr><td data-label="Day">Wed Feb 10</td><td data-label="Lunch">Condo or beach picnic</td><td data-label="Dinner">Street night: Mr. &amp; Mrs. Fish</td></tr>
+          <tr><td data-label="Day">Thu Feb 11</td><td data-label="Lunch">Fish market run, mariscos lunch out</td><td data-label="Dinner">Condo: grill the market fish</td></tr>
+          <tr><td data-label="Day">Fri Feb 12</td><td data-label="Lunch">Condo</td><td data-label="Dinner"><strong>Nice dinner:</strong> La Peska</td></tr>
+          <tr><td data-label="Day">Sat Feb 13</td><td data-label="Lunch">Beach club: Si Señor</td><td data-label="Dinner">Street night: ceviche and tostadas</td></tr>
+          <tr><td data-label="Day">Sun Feb 14</td><td data-label="Lunch">Graze the Sunday market</td><td data-label="Dinner"><strong>Nice dinner:</strong> Valentine's, booked ahead</td></tr>
+          <tr><td data-label="Day">Mon Feb 15</td><td data-label="Lunch">PV day: La Bendita</td><td data-label="Dinner"><strong>Nice dinner</strong> or a favourite again</td></tr>
+          <tr><td data-label="Day">Tue Feb 16</td><td data-label="Lunch">Condo leftovers</td><td data-label="Dinner">Home</td></tr>
+        </tbody>
+      </table></div>
+      <p>Food budget for the week: groceries about <span class="num">$490</span>, three nice dinners <span class="num">$600–950</span>, two or three street nights <span class="num">$75–180</span>, a few lunches out <span class="num">$100–250</span>, and treats about $100. Total about <span class="num">$1,400–2,000</span>, mid estimate $1,650. That matches the original guide's $1,000 to $1,700 range, with more spent on dinners.</p>
+      <p class="small muted"><strong>For the kids:</strong> no ceviche, aguachile or raw oysters for anyone under 5. Lime doesn't kill the bacteria, and health agencies list young children as high-risk. Order cooked shrimp or grilled fish for them. Use bottled water for bottles and toothbrushing. Restaurant ice in tourist areas is purified.</p>
+    </section>
+
+    <section class="sec" id="checklist" aria-labelledby="checklist-h">
+      <div class="sec-h"><span class="eyebrow">What the plan was missing</span><h2 id="checklist-h">Still to sort</h2>
+      <div class="progress"><div class="small muted" id="progText">0 of 16 done</div><div class="pbar"><div class="pfill" id="progFill"></div></div></div></div>
+      <div class="cols">
+        <div><h3>Before you go</h3>
+          <ul class="check">
+            <li><input type="checkbox" id="m1"><label for="m1"><strong>Measles shots.</strong> Baby's 12-month MMR at least 2 weeks before departure; early second dose for the 4-year-old; Grandma's immunity.</label></li>
+            <li><input type="checkbox" id="m2"><label for="m2"><strong>Airport transfer with car seats.</strong> A private van is about US$140–160 each way. Most companies list car seats "on request", so get it in writing, or bring your own. Uber can't pick up inside PVR, and its cars won't have seats.</label></li>
+            <li><input type="checkbox" id="m3"><label for="m3"><strong>Baby gear rental.</strong> Baby Vallarta and Baby Bliss deliver to Bucerías. A crib, high chair and jogging stroller run about $350 for the week.</label></li>
+            <li><input type="checkbox" id="m4"><label for="m4"><strong>No-foreign-fee credit card.</strong> Most Canadian cards add 2.5%. Scotiabank Passport, Scotiabank Gold Amex and Home Trust Preferred Visa don't.</label></li>
+            <li><input type="checkbox" id="m5"><label for="m5"><strong>Phone plan.</strong> Several Canadian plans now include Mexico from about $35–40 a month. Daily roaming is about $18 a day per phone.</label></li>
+            <li><input type="checkbox" id="m6"><label for="m6"><strong>Pharmacy bag.</strong> Children's acetaminophen and ibuprofen with dosing syringes, rehydration salts, thermometer, mineral sunscreen (expensive in Mexico), and icaridin repellent. Icaridin is preferred for babies over 6 months; DEET is limited to 10% and once a day.</label></li>
+            <li><input type="checkbox" id="m7"><label for="m7"><strong>Seat plan.</strong> Only one lap infant per row section. Put each adult with one child in the same row, the 4-year-old by the window.</label></li>
+            <li><input type="checkbox" id="m8"><label for="m8"><strong>Consent letter</strong> if either parent flies separately.</label></li>
+          </ul>
+        </div>
+        <div><h3>While you're there</h3>
+          <ul class="check">
+            <li><input type="checkbox" id="m9"><label for="m9"><strong>Whale watching.</strong> February is peak humpback season in the bay. Take a short (2 to 3 hour) covered catamaran from La Cruz marina, 10 minutes away, at about US$70–90 per adult. Ask for an infant life jacket.</label></li>
+            <li><input type="checkbox" id="m10"><label for="m10"><strong>Calm beach day trip:</strong> El Anclote in Punta de Mita, where jetties keep the water shallow and gentle. About 25 minutes away.</label></li>
+            <li><input type="checkbox" id="m11"><label for="m11"><strong>Skip:</strong> Marietas Hidden Beach (minimum age 10 to 12, plus a swim) and turtle releases (not in season in February).</label></li>
+            <li><input type="checkbox" id="m12"><label for="m12"><strong>Cash:</strong> use ATMs inside bank branches, and always press "decline conversion". BBVA charges the highest ATM fee.</label></li>
+            <li><input type="checkbox" id="m13"><label for="m13"><strong>Tips:</strong> housekeeping about 25–50 pesos a day, restaurants 15–20%, about 10% for the transfer driver.</label></li>
+            <li><input type="checkbox" id="m14"><label for="m14"><strong>Noise:</strong> Mardi Gras falls on your arrival day, Feb 9. Ask the host about carnival events, and pack a white-noise machine for roosters and weekend music.</label></li>
+            <li><input type="checkbox" id="m15"><label for="m15"><strong>Clock:</strong> Bucerías is on Puerto Vallarta time, 1 hour behind Toronto. Some phones flip to the rest of Nayarit's time zone near the state line, so set the time zone manually.</label></li>
+            <li><input type="checkbox" id="m16"><label for="m16"><strong>Arrival at PVR:</strong> after customs, walk straight through the room of timeshare and tour sellers and outside to your driver.</label></li>
+          </ul>
+        </div>
+      </div>
+      <p class="small muted">Ticks are saved on this device only.</p>
+    </section>
+
+    <section class="sec" id="backup" aria-labelledby="backup-h">
+      <div class="sec-h"><span class="eyebrow">If Vallarta falls through</span><h2 id="backup-h">Backup destinations</h2>
+      <p class="bl">Huatulco has the best toddler beaches but costly, infrequent flights. In Los Cabos, only Médano Beach is calm enough.</p></div>
+      <div class="cols">
+        <div><h3>Huatulco</h3>
+          <p>Santa Cruz bay is the calm, toddler-friendly beach. <strong>EOS Suites</strong> (about <span class="num">$244</span>/night, 2BR, fenced pool with a shallow end and baby gates, but only 22 reviews) and <strong>Nabani Condominios</strong> (about <span class="num">$375</span>, 9.4 from 133 reviews, a 9-minute walk to the beach) are the gems. <strong>Camino Real Zaashila's condos</strong> (about $280) put a kitchen on a private, sheltered beach. Flights are the problem: Feb 6–13 was about <span class="num">$4,500</span> for four. Lock flights first there.</p>
+        </div>
+        <div><h3>Los Cabos</h3>
+          <p>The San José del Cabo hotel-zone beach is not swimmable. <strong>Lumina at Marea</strong> (about <span class="num">$304</span>, 2BR, 9.5, a 6-minute walk to Médano; ask for a high unit away from the noisy street) and <strong>Condo Paraiso</strong> (about $326, 9.6, quieter, 12-minute walk) are the picks. Avoid Villa del Palmar and Pueblo Bonito for timeshare pressure. Whale-watching catamarans run about US$75 to $130 per person.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="fineprint" aria-labelledby="fineprint-h">
+      <div class="sec-h"><span class="eyebrow">HST, fees and protection</span><h2 id="fineprint-h">The fine print that moves the total</h2>
+      <p class="bl">There's almost no HST on a Mexico trip either way. Book flights and condo separately; package price-drop guarantees are mostly gone.</p></div>
+      <ul class="plain">
+        <li><strong>HST:</strong> flights to Mexico are zero-rated, so no 13% HST. In a package, the Mexican hotel and tours aren't taxed either. Only Canadian pieces (some agency service fees, domestic legs) can carry HST.</li>
+        <li><strong>TICO protection</strong> only applies if you book through an Ontario-registered agency or tour operator, and it repays what you paid, not replacement travel. Booking flights direct with the airline gets the 24-hour refund but no TICO coverage.</li>
+        <li><strong>Mexico's non-resident fee</strong> (in the airfare) is 983 pesos now. The 2027 budget proposes 1,334.80, with votes due by Oct 31. Buying in 2026 <em>might</em> lock the old rate. That's about $25 per paid seat and unconfirmed, so don't let it drive the timing.</li>
+        <li><strong>Price-drop guarantees are mostly gone:</strong> Sunwing ended its guarantee in 2024 and WestJet Vacations has none. Air Canada Vacations has one only with its $99-per-person CareFree add-on, capped at $200 per person, and you must claim it by phone.</li>
+        <li><strong>Porter tip:</strong> Costco sells $500 Porter e-gift cards for $449.99, and they stack with Porter sales. Paying with a gift card can void your credit card's travel insurance, so buy insurance separately.</li>
       </ul>
-    </div>
-    <div><h3>Avoid or ask first</h3>
-      <ul class="plain no small">
-        <li>Battered fish ("estilo Ensenada"), anything <em>empanizado</em> (breaded), and fried chips or tostadas from a shared fryer.</li>
-        <li>Black aguachile (<em>negro</em>) and micheladas: soy, Maggi and Worcestershire.</li>
-        <li>Pescado zarandeado, the local grilled-fish dish: many marinades use soy or Maggi. Ask for it without.</li>
-        <li>Red Mexican rice and fideo soup: chicken stock, and the soup has wheat noodles.</li>
-        <li>Refried beans and tamales: usually pork lard.</li>
-        <li>Mole, flour tortillas, beer.</li>
-      </ul>
-    </div>
-  </div>
+      <details><summary>How this was researched, and sources</summary>
+        <div class="foot">
+          <p>Live fares and room prices came from Expedia and Booking.com searches on Oct 12, 2026. Sale terms, fare-timing studies and forum reports came from web searches of RedFlagDeals threads, Jack's Flight Club, Flytrippers, Google Flights, Kayak, airline sites and Tripadvisor. Reddit, and the full text of RedFlagDeals and Tripadvisor threads, couldn't be opened from the research environment, so forum points are based on search summaries rather than full threads. Prices are snapshots; confirm on the final booking screen.</p>
+          <p>Key sources: <a href="https://www.flyporter.com/en-ca/">Porter sale</a> · <a href="https://www.aircanada.com/en-ca/">Air Canada sale</a> · <a href="https://www.rustourismnews.com/2026/09/24/westjet-launches-winter-mexico-sale-with-no-blackout-dates/">WestJet Mexico sale</a> · <a href="https://forums.redflagdeals.com/air-canada-air-canada-20-off-canada-u-s-mexico-caribbean-2791856/">RFD: Air Canada Black Friday blackouts</a> · <a href="https://forums.redflagdeals.com/porter-airlines-porter-airlines-boxing-week-sale-up-25-off-base-fares-2795852/">RFD: Porter Boxing Week</a> · <a href="https://flytrippers.com/black-friday-airline-sales-canada/">Flytrippers on Black Friday</a> · <a href="https://9to5google.com/2026/10/05/google-flights-cheap-times/">Google Flights 2026 timing</a> · <a href="https://www.airroi.com/report/world/mexico/jalisco/puerto-vallarta">AirROI rental demand</a> · <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-071/ontario-british-columbia-transition-harmonized-sales-tax-tour-packages.html">CRA on HST and tour packages</a> · <a href="https://tico.ca/consumers/standard-claim.html">TICO</a></p>
+          <p>Also in this site: the <a href="February%20Sun%20Trip%202027.html">full February Sun Trip guide</a> with destination comparisons, sargassum, safety and the cost explorer.</p>
+        </div>
+      </details>
+    </section>
 
-  <div class="phrases" id="phrasecard">
-    <h3>Laura's dining card</h3>
-    <ol>
-      <li><span class="es">Tengo enfermedad celíaca. No puedo comer gluten: nada de trigo, harina de trigo, cebada ni centeno. Incluso migajas me enferman.</span><span class="en">I have coeliac disease. No wheat, wheat flour, barley or rye. Even crumbs make me sick.</span></li>
-      <li><span class="es">No como carne, pollo ni cerdo. Sí como pescado y mariscos.</span><span class="en">I don't eat meat, chicken or pork. I do eat fish and seafood.</span></li>
-      <li><span class="es">Por favor, sin Maggi, sin salsa de soya y sin salsa inglesa. Solo limón, sal y chile.</span><span class="en">Please, no Maggi, soy sauce or Worcestershire. Just lime, salt and chile.</span></li>
-      <li><span class="es">¿Las tortillas son 100% de maíz? ¿Calientan las de harina en la misma plancha?</span><span class="en">Are the tortillas 100% corn? Do you heat flour tortillas on the same griddle?</span></li>
-      <li><span class="es">¿El pescado es empanizado o capeado? Lo quiero a la plancha, sin harina.</span><span class="en">Is the fish breaded or battered? I'd like it grilled, no flour.</span></li>
-      <li><span class="es">¿El arroz o los frijoles llevan caldo de pollo o manteca?</span><span class="en">Do the rice or beans have chicken stock or lard?</span></li>
-      <li><span class="es">Es por salud, no es preferencia. ¡Muchas gracias!</span><span class="en">It's for my health, not a preference. Thank you!</span></li>
-    </ol>
-    <button class="btn" id="copyCard" type="button">Copy the Spanish</button>
-    <span class="small muted" id="copyMsg" aria-live="polite"></span>
-  </div>
-
-  <h3>Groceries: breakfast and lunch at the condo</h3>
-  <ul class="plain">
-    <li><strong>Main shop:</strong> Mega, on the highway at the south edge of Bucerías, open 7 am to 11 pm. La Comer, across the road, has more imported and gluten-free products. Walmart, near Flamingos, is cheapest. Uber Eats delivers groceries in Bucerías if you'd rather not go out on arrival day.</li>
-    <li><strong>Fresh fish:</strong> Mercado del Mar at La Cruz marina is open daily. About 30 stalls fillet snapper, mahi-mahi and tuna to order. Go before 9 am. Two condo fish dinners cost a fraction of a restaurant.</li>
-    <li><strong>Markets:</strong> the La Cruz Sunday market (Sunday Feb 14, about 9 am to 2 pm) and the Bucerías Sunday street market for fruit, shrimp and snacks.</li>
-    <li><strong>First shop</strong> for the week, about <span class="num">$400–550</span>: milk, eggs, yogurt, two boxes of cereal, oats for the rest of you, bananas, papaya, pineapple, avocados, corn tortillas from a tortilla shop, cheese, peanut butter, juice, coffee, drinking water in big 20-litre jugs, diapers, baby pouches, and produce-washing drops (Microdyn).</li>
-  </ul>
-
-  <div class="callout warn">
-    <p><strong>Pack from home for Laura</strong>, because certified gluten-free oats weren't found in Mexican stores and "sin gluten" labels there are often unreliable: certified GF oats (1 to 1.5 kg), her usual GF cereal, GF crackers or bread, one box of GF pasta, a bottle of GF tamari to hand to a chef, and snack bars for the beach.</p>
-    <p class="small">Mexican customs allow sealed, shop-labelled, shelf-stable food. Don't bring fresh fruit, sandwiches or cheese. Bring a full week of the baby's formula too, because Mexican versions are made differently.</p>
-  </div>
-
-  <h3>Where to eat</h3>
-  <div class="tw"><table>
-    <thead><tr><th>Place</th><th>Type</th><th>For Laura</th><th class="r">Family cost</th></tr></thead>
-    <tbody>
-      <tr><td>Mr. &amp; Mrs. Fish, Bucerías</td><td>Street-casual, beachside</td><td>Grilled dorado tacos, whole snapper with garlic</td><td class="r">$40–70</td></tr>
-      <tr><td>El Rincón de Ensenada, Bucerías</td><td>Taco stand, cash only</td><td>Ceviche and tostadas only; the tacos are battered</td><td class="r">$35–60</td></tr>
-      <tr><td>Mariscos Villarreal, Bucerías</td><td>Local seafood, big portions</td><td>Ceviche, green aguachile</td><td class="r">$50–90</td></tr>
-      <tr><td>Si Señor, Bucerías</td><td>Beach club, kids on the sand</td><td>Grilled seafood; confirm sauces</td><td class="r">$120–200</td></tr>
-      <tr><td>Karen's Place, Bucerías</td><td>Beachfront, GF items marked</td><td>Mixed reviews from coeliacs</td><td class="r">$150–250</td></tr>
-      <tr class="pick"><td>La Peska, La Cruz marina</td><td>Nicer dinner, 4.7 from 1,300+ reviews</td><td>Grilled fish, ceviche; zarandeado "sin soya ni Maggi". Closed Tuesdays</td><td class="r">$200–320</td></tr>
-      <tr><td>Tramonto or Il Pescatore, Nuevo Vallarta</td><td>Italian</td><td>GF pasta reported</td><td class="r">$200–300</td></tr>
-      <tr class="pick"><td>La Bendita, Puerto Vallarta</td><td>Fully gluten-free kitchen</td><td>Everything. Worth one lunch on a PV day</td><td class="r">$60–100</td></tr>
-    </tbody>
-  </table></div>
-  <p class="small muted">Reviews and menus from 2024 to 2026; none were confirmed by phone. Street tacos run about 25 to 45 pesos ($2 to $3.60) each. Most stands take cash only. Tip 15 to 20% at sit-down restaurants, in pesos.</p>
-
-  <h3>A week that works</h3>
-  <div class="tw"><table>
-    <thead><tr><th>Day</th><th>Lunch</th><th>Dinner</th></tr></thead>
-    <tbody>
-      <tr><td>Tue Feb 9</td><td>Plane snacks</td><td>Condo, after the big shop</td></tr>
-      <tr><td>Wed Feb 10</td><td>Condo or beach picnic</td><td>Street night: Mr. &amp; Mrs. Fish</td></tr>
-      <tr><td>Thu Feb 11</td><td>Fish market run, mariscos lunch out</td><td>Condo: grill the market fish</td></tr>
-      <tr><td>Fri Feb 12</td><td>Condo</td><td><strong>Nice dinner:</strong> La Peska</td></tr>
-      <tr><td>Sat Feb 13</td><td>Beach club: Si Señor</td><td>Street night: ceviche and tostadas</td></tr>
-      <tr><td>Sun Feb 14</td><td>Graze the Sunday market</td><td><strong>Nice dinner:</strong> Valentine's, booked ahead</td></tr>
-      <tr><td>Mon Feb 15</td><td>PV day: La Bendita</td><td><strong>Nice dinner</strong> or a favourite again</td></tr>
-      <tr><td>Tue Feb 16</td><td>Condo leftovers</td><td>Home</td></tr>
-    </tbody>
-  </table></div>
-  <p>Food budget for the week: groceries about <span class="num">$490</span>, three nice dinners <span class="num">$600–950</span>, two or three street nights <span class="num">$75–180</span>, a few lunches out <span class="num">$100–250</span>, and treats about $100. Total about <span class="num">$1,400–2,000</span>, mid estimate $1,650. That matches the original guide's $1,000 to $1,700 range, with more spent on dinners.</p>
-  <p class="small muted"><strong>For the kids:</strong> no ceviche, aguachile or raw oysters for anyone under 5. Lime doesn't kill the bacteria, and health agencies list young children as high-risk. Order cooked shrimp or grilled fish for them. Use bottled water for bottles and toothbrushing. Restaurant ice in tourist areas is purified.</p>
-</section>
-
-<section aria-labelledby="missing">
-  <div class="eyebrow">What the plan was missing</div>
-  <h2 id="missing">Still to sort</h2>
-  <div class="cols">
-    <div><h3>Before you go</h3>
-      <ul class="check">
-        <li><input type="checkbox" id="m1"><label for="m1"><strong>Measles shots.</strong> Baby's 12-month MMR at least 2 weeks before departure; early second dose for the 4-year-old; Grandma's immunity.</label></li>
-        <li><input type="checkbox" id="m2"><label for="m2"><strong>Airport transfer with car seats.</strong> A private van is about US$140–160 each way. Most companies list car seats "on request", so get it in writing, or bring your own. Uber can't pick up inside PVR, and its cars won't have seats.</label></li>
-        <li><input type="checkbox" id="m3"><label for="m3"><strong>Baby gear rental.</strong> Baby Vallarta and Baby Bliss deliver to Bucerías. A crib, high chair and jogging stroller run about $350 for the week.</label></li>
-        <li><input type="checkbox" id="m4"><label for="m4"><strong>No-foreign-fee credit card.</strong> Most Canadian cards add 2.5%. Scotiabank Passport, Scotiabank Gold Amex and Home Trust Preferred Visa don't.</label></li>
-        <li><input type="checkbox" id="m5"><label for="m5"><strong>Phone plan.</strong> Several Canadian plans now include Mexico from about $35–40 a month. Daily roaming is about $18 a day per phone.</label></li>
-        <li><input type="checkbox" id="m6"><label for="m6"><strong>Pharmacy bag.</strong> Children's acetaminophen and ibuprofen with dosing syringes, rehydration salts, thermometer, mineral sunscreen (expensive in Mexico), and icaridin repellent. Icaridin is preferred for babies over 6 months; DEET is limited to 10% and once a day.</label></li>
-        <li><input type="checkbox" id="m7"><label for="m7"><strong>Seat plan.</strong> Only one lap infant per row section. Put each adult with one child in the same row, the 4-year-old by the window.</label></li>
-        <li><input type="checkbox" id="m8"><label for="m8"><strong>Consent letter</strong> if either parent flies separately.</label></li>
-      </ul>
-    </div>
-    <div><h3>While you're there</h3>
-      <ul class="check">
-        <li><input type="checkbox" id="m9"><label for="m9"><strong>Whale watching.</strong> February is peak humpback season in the bay. Take a short (2 to 3 hour) covered catamaran from La Cruz marina, 10 minutes away, at about US$70–90 per adult. Ask for an infant life jacket.</label></li>
-        <li><input type="checkbox" id="m10"><label for="m10"><strong>Calm beach day trip:</strong> El Anclote in Punta de Mita, where jetties keep the water shallow and gentle. About 25 minutes away.</label></li>
-        <li><input type="checkbox" id="m11"><label for="m11"><strong>Skip:</strong> Marietas Hidden Beach (minimum age 10 to 12, plus a swim) and turtle releases (not in season in February).</label></li>
-        <li><input type="checkbox" id="m12"><label for="m12"><strong>Cash:</strong> use ATMs inside bank branches, and always press "decline conversion". BBVA charges the highest ATM fee.</label></li>
-        <li><input type="checkbox" id="m13"><label for="m13"><strong>Tips:</strong> housekeeping about 25–50 pesos a day, restaurants 15–20%, about 10% for the transfer driver.</label></li>
-        <li><input type="checkbox" id="m14"><label for="m14"><strong>Noise:</strong> Mardi Gras falls on your arrival day, Feb 9. Ask the host about carnival events, and pack a white-noise machine for roosters and weekend music.</label></li>
-        <li><input type="checkbox" id="m15"><label for="m15"><strong>Clock:</strong> Bucerías is on Puerto Vallarta time, 1 hour behind Toronto. Some phones flip to the rest of Nayarit's time zone near the state line, so set the time zone manually.</label></li>
-        <li><input type="checkbox" id="m16"><label for="m16"><strong>Arrival at PVR:</strong> after customs, walk straight through the room of timeshare and tour sellers and outside to your driver.</label></li>
-      </ul>
-    </div>
-  </div>
-  <p class="small muted">Ticks are saved in this browser only.</p>
-</section>
-
-<section aria-labelledby="backup">
-  <div class="eyebrow">If Vallarta falls through</div>
-  <h2 id="backup">Backup destinations</h2>
-  <div class="cols">
-    <div><h3>Huatulco: best beaches, costly flights</h3>
-      <p>Santa Cruz bay is the calm, toddler-friendly beach. <strong>EOS Suites</strong> (about <span class="num">$244</span>/night, 2BR, fenced pool with a shallow end and baby gates, but only 22 reviews) and <strong>Nabani Condominios</strong> (about <span class="num">$375</span>, 9.4 from 133 reviews, a 9-minute walk to the beach) are the gems. <strong>Camino Real Zaashila's condos</strong> (about $280) put a kitchen on a private, sheltered beach. Flights are the problem: Feb 6–13 was about <span class="num">$4,500</span> for four. Lock flights first there.</p>
-    </div>
-    <div><h3>Los Cabos: stay on Médano only</h3>
-      <p>The San José del Cabo hotel-zone beach is not swimmable. <strong>Lumina at Marea</strong> (about <span class="num">$304</span>, 2BR, 9.5, a 6-minute walk to Médano; ask for a high unit away from the noisy street) and <strong>Condo Paraiso</strong> (about $326, 9.6, quieter, 12-minute walk) are the picks. Avoid Villa del Palmar and Pueblo Bonito for timeshare pressure. Whale-watching catamarans run about US$75 to $130 per person.</p>
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="tax">
-  <div class="eyebrow">HST, fees and protection</div>
-  <h2 id="tax">The fine print that moves the total</h2>
-  <ul class="plain">
-    <li><strong>HST:</strong> flights to Mexico are zero-rated, so no 13% HST. In a package, the Mexican hotel and tours aren't taxed either. Only Canadian pieces (some agency service fees, domestic legs) can carry HST. You save almost nothing on tax by choosing one route over the other.</li>
-    <li><strong>TICO protection</strong> only applies if you book through an Ontario-registered agency or tour operator, and it repays what you paid, not replacement travel. Booking flights direct with the airline gets the 24-hour refund but no TICO coverage.</li>
-    <li><strong>Mexico's non-resident fee</strong> (in the airfare) is 983 pesos now. The 2027 budget proposes 1,334.80, with votes due by Oct 31. Buying in 2026 <em>might</em> lock the old rate. That's about $25 per paid seat and unconfirmed, so don't let it drive the timing.</li>
-    <li><strong>Price-drop guarantees are mostly gone:</strong> Sunwing ended its guarantee in 2024 and WestJet Vacations has none. Air Canada Vacations has one only with its $99-per-person CareFree add-on, capped at $200 per person, and you must claim it by phone. This is another reason to book flights and condo separately.</li>
-    <li><strong>Porter tip:</strong> Costco sells $500 Porter e-gift cards for $449.99, and they stack with Porter sales. Paying with a gift card can void your credit card's travel insurance, so buy insurance separately.</li>
-  </ul>
-</section>
-
-<footer class="foot">
-  <p><strong>How this was researched.</strong> Live fares and room prices came from Expedia and Booking.com searches on Oct 12, 2026. Sale terms, fare-timing studies and forum reports came from web searches of RedFlagDeals threads, Jack's Flight Club, Flytrippers, Google Flights, Kayak, airline sites and Tripadvisor. Reddit, and the full text of RedFlagDeals and Tripadvisor threads, couldn't be opened from this environment, so forum points are based on search summaries rather than full threads. Prices are snapshots; confirm on the final booking screen.</p>
-  <p>Key sources: <a href="https://www.flyporter.com/en-ca/">Porter sale</a> · <a href="https://www.aircanada.com/en-ca/">Air Canada sale</a> · <a href="https://www.rustourismnews.com/2026/09/24/westjet-launches-winter-mexico-sale-with-no-blackout-dates/">WestJet Mexico sale</a> · <a href="https://forums.redflagdeals.com/air-canada-air-canada-20-off-canada-u-s-mexico-caribbean-2791856/">RFD: Air Canada Black Friday blackouts</a> · <a href="https://forums.redflagdeals.com/porter-airlines-porter-airlines-boxing-week-sale-up-25-off-base-fares-2795852/">RFD: Porter Boxing Week</a> · <a href="https://flytrippers.com/black-friday-airline-sales-canada/">Flytrippers on Black Friday</a> · <a href="https://9to5google.com/2026/10/05/google-flights-cheap-times/">Google Flights 2026 timing</a> · <a href="https://www.airroi.com/report/world/mexico/jalisco/puerto-vallarta">AirROI rental demand</a> · <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-071/ontario-british-columbia-transition-harmonized-sales-tax-tour-packages.html">CRA on HST and tour packages</a> · <a href="https://tico.ca/consumers/standard-claim.html">TICO</a></p>
-</footer>
+  </main>
 </div>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-h">
+  <div class="sheet-in">
+    <button class="ibtn close" id="closeSheet" type="button">Cerrar · Close</button>
+    <h2 id="sheet-h">Para el mesero</h2>
+    <ol id="sheetList"></ol>
+  </div>
+</div>
+
+<button class="ibtn totop" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
 (function(){
-  var btn=document.getElementById('copyCard'), msg=document.getElementById('copyMsg');
-  btn.addEventListener('click',function(){
-    var text=Array.prototype.map.call(document.querySelectorAll('#phrasecard .es'),function(e){return e.textContent}).join('\n');
-    function fallback(){var r=document.createRange();r.selectNodeContents(document.querySelector('#phrasecard ol'));var s=window.getSelection();s.removeAllRanges();s.addRange(r);msg.textContent='Selected. Press Ctrl+C or Cmd+C to copy.';}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){msg.textContent='Copied.';},fallback);}else{fallback();}
+  var $=function(s,c){return (c||document).querySelector(s)}, $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var toastEl=$('#toast'), toastT;
+  function toast(msg){toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200);}
+
+  /* Theme */
+  var root=document.documentElement, THEME='vbp-theme';
+  try{var t=localStorage.getItem(THEME);if(t==='dark'||t==='light')root.setAttribute('data-theme',t);}catch(e){}
+  $('#themeBtn').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: dark)').matches);
+    var next=dark?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem(THEME,next)}catch(e){}
   });
-  var KEY='vbp-checks';
-  var saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
-  document.querySelectorAll('.check input').forEach(function(cb){
-    cb.checked=!!saved[cb.id];
-    cb.addEventListener('change',function(){saved[cb.id]=cb.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}});
+
+  /* Share */
+  $('#shareBtn').addEventListener('click',function(){
+    var data={title:document.title,url:location.href};
+    if(navigator.share){navigator.share(data).catch(function(){});}
+    else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(location.href).then(function(){toast('Link copied')},function(){toast(location.href)});}
+    else{toast(location.href);}
   });
+
+  /* Dates: countdown badges, timeline state, up-next strip */
+  function parse(iso){var p=iso.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  function days(d){return Math.round((d-today)/86400000);}
+  $$('.cd[data-cd]').forEach(function(el){
+    var n=days(parse(el.getAttribute('data-cd'))), togo=el.getAttribute('data-mode')==='togo', txt, cls='';
+    if(n<0){txt=togo?'done':'passed';cls='past';}
+    else if(n===0){txt=togo?'today!':'due today';cls='today';}
+    else if(n===1){txt=togo?'tomorrow':'due tomorrow';cls='soon';}
+    else{txt=(togo?'':'in ')+n+' days'+(togo?' to go':'');cls=(!togo&&n<=7)?'soon':'';}
+    el.textContent=txt;if(cls)el.classList.add(cls);
+  });
+  var items=$$('#timeline li'), upcoming=[];
+  items.forEach(function(li){
+    var from=parse(li.getAttribute('data-from')), to=parse(li.getAttribute('data-to'));
+    if(days(to)<0)li.classList.add('past');
+    else{ if(days(from)<=0)li.classList.add('now'); upcoming.push(li); }
+  });
+  var list=$('#upnextList');
+  if(!upcoming.length){$('#upnext').hidden=true;}
+  else upcoming.slice(0,3).forEach(function(li){
+    var a=document.createElement('a');a.className='up';a.href='#'+li.id;
+    var d=document.createElement('span');d.className='d';d.textContent=$('.when b',li).textContent;
+    var t=document.createElement('span');t.className='t';t.textContent=$('h3',li).childNodes[0].textContent.trim();
+    a.appendChild(d);a.appendChild(t);list.appendChild(a);
+  });
+
+  /* Section nav: scrollspy */
+  var links=$$('#nav a'), secs=links.map(function(a){return $(a.getAttribute('href'))}).filter(Boolean);
+  function setActive(id){
+    links.forEach(function(a){var on=a.getAttribute('href')==='#'+id;a.classList.toggle('active',on);
+      if(on&&a.scrollIntoView&&innerWidth<1000){try{a.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'})}catch(e){a.scrollIntoView()}}});
+  }
+  if('IntersectionObserver' in window){
+    var vis={};
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){vis[e.target.id]=e.isIntersecting?e.intersectionRatio:0;});
+      var best=null,bv=0;secs.forEach(function(s){if((vis[s.id]||0)>bv){bv=vis[s.id];best=s.id;}});
+      if(best)setActive(best);
+    },{rootMargin:'-20% 0px -55% 0px',threshold:[0,.1,.25,.5,.75,1]});
+    secs.forEach(function(s){io.observe(s)});
+  }
+  if(!$('#nav a.active'))links[0].classList.add('active');
+
+  /* Back to top */
+  var top=$('#toTop');
+  addEventListener('scroll',function(){top.classList.toggle('show',scrollY>700)},{passive:true});
+  top.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
+
+  /* Dining card */
+  var es=function(){return $$('#phrasecard .es').map(function(e){return e.textContent})};
+  $('#copyCard').addEventListener('click',function(){
+    var text=es().join('\n');
+    function fallback(){var r=document.createRange();r.selectNodeContents($('#phrasecard ol'));var s=getSelection();s.removeAllRanges();s.addRange(r);toast('Selected. Press Ctrl+C or Cmd+C.');}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){toast('Copied')},fallback);}else{fallback();}
+  });
+  var sheet=$('#sheet'), sheetList=$('#sheetList'), lastFocus;
+  $('#showCard').addEventListener('click',function(){
+    sheetList.innerHTML='';es().forEach(function(t){var li=document.createElement('li');li.textContent=t;sheetList.appendChild(li);});
+    lastFocus=document.activeElement;sheet.hidden=false;document.body.style.overflow='hidden';$('#closeSheet').focus();
+  });
+  function closeSheet(){sheet.hidden=true;document.body.style.overflow='';if(lastFocus)lastFocus.focus();}
+  $('#closeSheet').addEventListener('click',closeSheet);
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&!sheet.hidden)closeSheet();});
+
+  /* Checklist with progress */
+  var KEY='vbp-checks', saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  var boxes=$$('.check input');
+  function progress(){var n=boxes.filter(function(b){return b.checked}).length;$('#progText').textContent=n+' of '+boxes.length+' done';$('#progFill').style.width=(100*n/boxes.length)+'%';}
+  boxes.forEach(function(cb){cb.checked=!!saved[cb.id];cb.addEventListener('change',function(){saved[cb.id]=cb.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}progress();});});
+  progress();
 })();
 </script>
 </body>
